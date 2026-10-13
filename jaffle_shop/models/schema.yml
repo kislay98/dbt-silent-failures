@@ -29,6 +29,9 @@ models:
       - name: total_order_amount
         description: Total value (AUD) of a customer's orders
 
+      - name: completed_lifetime_value
+        description: Total value (AUD) of a customer's orders with status completed
+
   - name: orders
     description: This table has basic information about orders, as well as some derived facts based on payments
 
@@ -49,7 +52,7 @@ models:
                 field: customer_id
 
       - name: order_date
-        description: Date (UTC) that the order was placed
+        description: Date (UTC) that the order was placed, from the ordered_at timestamp
 
       - name: status
         description: '{{ doc("orders_status") }}'
@@ -80,5 +83,48 @@ models:
 
       - name: gift_card_amount
         description: Amount of the order (AUD) paid for by gift card
+        tests:
+          - not_null
+
+  - name: daily_revenue
+    description: Orders and revenue per order date. Incremental, rebuilds the last three days on each run
+
+    columns:
+      - name: order_date
+        tests:
+          - unique
+          - not_null
+
+      - name: orders
+        tests:
+          - not_null
+
+      - name: revenue
+        tests:
+          - not_null
+
+  - name: region_revenue
+    description: Customers, orders and revenue per customer region
+
+    columns:
+      - name: region
+        tests:
+          - unique
+          - not_null
+
+      - name: revenue
+        tests:
+          - not_null
+
+seeds:
+  - name: raw_customer_regions
+    description: One row per customer from the regions feed
+
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: region
         tests:
           - not_null

@@ -13,7 +13,8 @@ renamed as (
     select
         id as order_id,
         user_id as customer_id,
-        order_date,
+        ordered_at,
+        cast(ordered_at as date) as order_date,
         status
 
     from source

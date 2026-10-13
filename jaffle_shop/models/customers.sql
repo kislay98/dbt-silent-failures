@@ -34,7 +34,8 @@ customer_payments as (
 
     select
         orders.customer_id,
-        sum(amount) as total_amount
+        sum(amount) as total_amount,
+        sum(case when orders.status = 'completed' then amount else 0 end) as completed_amount
 
     from payments
 
@@ -54,7 +55,8 @@ final as (
         customer_orders.first_order,
         customer_orders.most_recent_order,
         customer_orders.number_of_orders,
-        customer_payments.total_amount as customer_lifetime_value
+        customer_payments.total_amount as customer_lifetime_value,
+        customer_payments.completed_amount as completed_lifetime_value
 
     from customers
 
