@@ -1,26 +1,35 @@
 # Score: gift_card_dollars
 
-**Model:** Claude Sonnet via `claude -p --model sonnet --tools ""` (Claude Code 2.1.296), all tools disabled, prompt = `prompt.md`.
+**Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
+isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
+(seeds included, 28-test project). Sonnet is `claude-sonnet-5-5` (22 s, USD 0.08), response in `response.md`. Haiku is `claude-haiku-5-5`
+(32 s, USD 0.006), response in `response_haiku.md`.
 
-**Root cause: found.** It named the exact line (`amount / 100` in `models/staging/stg_payments.sql`), the exact rows
-(all 12 `gift_card` rows in `seeds/raw_payments.csv`, listed by payment id, order id, raw and staged value, all correct),
-and the mechanism (rows already in dollars get divided by 100 again). It reconciled every number in the prompt:
-non-gift-card methods 411 + 185 + 871 = 1467.00, plus 205.00 = 1672.00 settlement, plus 2.05 = 1469.05 observed. It also
-got order 87 right (26.30 shown, 56.00 expected) without being told, and explained why all 28 tests pass (none check values).
-Bonus: it also spotted that `models/schema.yml` documents a `total_order_amount` column on `customers` that the model
-never produces (the real column is `customer_lifetime_value`). That is a genuine docs bug in upstream jaffle_shop,
-unrelated to the injection, and it correctly flagged it as separate.
+## Claude Sonnet
 
-**Fix: made the output correct.** Its fix is a `case when payment_method = 'gift_card' then amount else amount / 100 end`
-in `stg_payments`. Applied on the broken seed and rebuilt: `sum(orders.amount)` back to 1672.0, `sum(gift_card_amount)`
-back to 205.0, order 9 back to 23.0, order 87 back to 56.0, customer 53 back to 39.0, all 12 orders and 10 customers
-match the clean values. Caveat it raised itself: this bakes the provider's mistake into the model, and if the feed goes
-back to cents the same rows become 100x too large. The ground truth prefers fixing the seed; its fix is correct for the
-data as given. Its reconciliation test (`provider_statement` seed + singular test comparing `sum(gift_card_amount)` and
-`sum(amount)` to the statement) returns 2 rows on the broken data without the fix (`dbt build` reports ERROR=1) and
-0 rows on clean data and on fixed data (30/30 pass with the extra seed and test).
+**Root cause: found.** It named the `amount / 100` line in `stg_payments.sql`, all 12 gift card rows with id, order,
+raw, staged and correct value (all right), 205 against 2.05, the reconciliation 1469.05 - 2.05 + 205.00 = 1672.00,
+customer 53 at 16.23 instead of 39.00, and why no structural test can see a wrong value. It flagged the
+`total_order_amount` doc line.
 
-**Verdict:** pass on both root cause and fix. Like dev's case this is easy with the full seed in the prompt: 12 rows with
-two-digit amounts sit among 101 rows with four-digit amounts, and the 100x ratio in the symptom gives it away. A harder
-variant would convert only part of the gift card rows (so the method total no longer reconciles cleanly), or pick a
-method whose rows are not visibly different in magnitude, or hide the seed and give only aggregates.
+**Fix: made the output correct.** `case when payment_method = 'gift_card' then amount else amount / 100 end`. Applied and
+rebuilt: every order matches the clean data, 1672.0 and 205.0. Its singular test with hard-coded control totals (gift
+card 205.00, all methods 1672.00) fails with 2 rows on the broken data, passes after the fix and on clean data (41/41);
+it noted the totals are tied to this snapshot and belong in a seed.
+
+**Verdict:** pass on both root cause and fix.
+
+## Claude Haiku
+
+**Root cause: found.** The same line and the same 12 rows (all right), the arithmetic, order 87 to 56.00 and order 58 to
+24.00 (both right), and why the internal totals agree with each other while wrong.
+
+**Fix: made the output correct.** It fixed the data instead of the model: the 12 gift card rows back to cents. The 12
+values it listed reproduce the clean seed byte for byte; rebuilt, every order matches the clean data, 1672.0 and 205.0.
+Its test is a `control_payment_totals` seed (gift card 205.00) with a per-method reconciliation on `stg_payments`: fails
+with 1 row on the broken data and passes after the fix.
+
+**Verdict:** pass on both root cause and fix.
+
+**Earlier runs (default config, confounded by the ponytail hook, 17 to 22 Oct):** Sonnet pass and pass; Haiku pass and
+pass. No verdict changed; the models now split on where to fix (model or seed), and both are correct for this data.
