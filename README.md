@@ -14,6 +14,10 @@ cd ..
 python3 cases/duplicate_payments/inject.py
 cd jaffle_shop && uv run dbt build   # broken: 28 pass, sum(orders.amount) = 1852
 git checkout seeds/raw_payments.csv  # undo
+cd ..
+python3 cases/gift_card_dollars/inject.py
+cd jaffle_shop && uv run dbt build   # broken: 28 pass, sum(orders.amount) = 1469.05
+git checkout seeds/raw_payments.csv  # undo
 ```
 
 Check a number: `uv run python -c "import duckdb; print(duckdb.connect('jaffle_shop.duckdb').sql('select sum(amount) from orders'))"`
@@ -30,3 +34,4 @@ Check a number: `uv run python -c "import duckdb; print(duckdb.connect('jaffle_s
 | Case | What breaks | Tests | Model | Found root cause | Fix worked |
 |---|---|---|---|---|---|
 | duplicate_payments | 12 payments re-ingested with fresh ids | 28/28 pass | Claude Sonnet | yes | yes |
+| gift_card_dollars | 12 gift card payments sent in dollars, divided by 100 again | 28/28 pass | Claude Sonnet | yes | yes |
