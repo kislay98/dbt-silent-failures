@@ -1,0 +1,5 @@
+jaffle_shop/.venv/
+jaffle_shop/target/
+jaffle_shop/logs/
+jaffle_shop/*.duckdb
+jaffle_shop/.user.yml
