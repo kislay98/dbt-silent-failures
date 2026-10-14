@@ -29,8 +29,22 @@ passes clean.
 **Prompt note.** The first prompt said ops reconciles daily against the admin screen but not that the two had agreed
 before this load; with the project docs calling `order_date` "Date (UTC)" and rows 54 to 56 carrying equal timestamps,
 all six first runs read the whole history as UTC and converted every row. That reading was defensible, so the prompt
-gained one sentence ("until this load the two agreed on every day since January"), the six runs were set aside, and the
-case was run again; the table above is the second set.
+gained one sentence ("until this load the two agreed on every day since January") and the case was run again; the
+table above is the second set, and only it is in `results.csv`. The six first runs are kept in `runs/first_prompt/`
+with the prompt they answered (sha256 `c5676332c543`), scored on the same rubric:
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-1 | no | no | The rename from order 57, then "raw timestamps are UTC" for every row: `coalesce(order_ts, ordered_at)` converted to a `shop_timezone` var, which moves the 56 backfilled orders too. |
+| sonnet-2 | no | no | Same; "if you'd rather keep `order_date` in UTC, drop the wrapper, but then order 73 will not reconcile". |
+| sonnet-3 | no | no | Same, "both are UTC"; warns that January and February may shift and asks ops to compare after the rebuild. |
+| haiku-1 | no | no | Reads `order_ts` for every row and converts all of them, dropping `ordered_at`. |
+| haiku-2 | no | no | `coalesce`, then the local conversion "as my recommendation" with UTC kept as an option; every row converted either way. |
+| haiku-3 | no | no | Same; infers Asia/Kolkata from the offset and asks ops to confirm the zone. |
+
+All six name the rename but read UTC as the feed's standing convention rather than the change, so under the rubric none
+names the second defect, and every fix moves the 56 local rows. On the amended prompt the same two models are 5 of 6;
+the one sentence is the difference, and the paper should say so.
 
 **What it says.** Eight of nine on both counts, against 0 of 18 complete fixes on the two `utc_switch` cases: the rename
 marks the cut-over (the rows with no `ordered_at` are the rows in UTC), so the mixed case is easier than its timezone
