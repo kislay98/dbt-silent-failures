@@ -47,3 +47,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | haiku-3 | yes | yes | Same. |
 
 Same fix shapes as the verified runs.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | 108 region rows for 100 customers read off the seed log, re-sent rows with the same region since `sum(orders)` stays 99; latest row per customer in a new `stg_customer_regions` with `unique` and `relationships` tests, `region_revenue` reads it; revenue reconciliation to `orders`. |
+| opus-2 | yes | yes | Same; names the as-of join as the alternative if finance wants the region at order time. |
+| opus-3 | yes | yes | Same. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

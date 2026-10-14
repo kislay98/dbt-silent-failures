@@ -23,3 +23,16 @@ data and passes on clean data.
 **What it says.** Without the example order the root-cause rate halves (3 of 6; three more named the zone mismatch but not the switch) and no fix is complete (0 of 6). The country gives the
 offset; the only evidence for a switch is "the two always agreed" plus the absence of pre-March mismatches, and three
 runs explained that away.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | no | IST wall-clock until mid-March, UTC after, with no example order to go on; every listed disagreement reproduced by +5:30; a cut-over id var "between the last order on 14 March and the first on the 15th", so every date comes right and the 1 to 14 March times stay 5h30 early; tells the reader to check the older rows are IST before applying. |
+| opus-2 | yes | no | Same switch at about 15 March, keyed on a cut-over id; same partial result; order 89 at 15 minutes past the boundary cited as the proof. |
+| opus-3 | yes | no | Same; places the first UTC row at order 73 from the counts and converts from there; same partial result. |
+
+Opus: 3 of 3 found, 0 of 3 fixed.

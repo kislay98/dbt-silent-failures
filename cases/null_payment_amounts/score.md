@@ -24,3 +24,16 @@ the four visible rows leaves orders 18, 49 and 51 short; restoring all eight res
 **What it says.** Six of six on the cause, five of six on the fix. The miss is scope: the sample showed four of the
 eight NULL rows and one run took the sample for the population. Every run spotted that the dashboard agrees with the
 settlement only because its history predates the NULLs.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | NULL amounts on the second instalments, `daily_revenue` right by luck; reload the rows from the source, no `coalesce`, full refresh. |
+| opus-2 | yes | yes | Same; adds hardening that makes an order's total NULL when any instalment has none, so `not_null` fires. |
+| opus-3 | yes | yes | Same; full refresh only after the reload. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

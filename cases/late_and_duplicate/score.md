@@ -19,3 +19,16 @@ fails with 16 rows and the duplicates test with 12 on the broken data; both pass
 kept the six late orders, which is the trap this case sets.
 
 **What it says.** Six of six on two overlapping failures; the per-day mismatch sample carried both signals.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Both: twelve replayed payments (+180) and the six backfilled February orders the window never sees (-51); remove the copies at the source from an (order, method, amount) listing, keep the late orders, `daily_revenue` as a table, full refresh. |
+| opus-2 | yes | yes | Same, with the excess split by date to the cent. |
+| opus-3 | yes | yes | Same. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

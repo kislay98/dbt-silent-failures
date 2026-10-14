@@ -27,3 +27,16 @@ pass clean.
 first: once the breakdown is explained by the rename, the leftover gap in the totals gets a new story (orphans) rather
 than a second look at the 0.02 rows in the sample. Sonnet found both and then over-generalised the second into a rule
 that breaks the one cents coupon after the rename.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Both: the rename, and the six rows that are not whole cents from March on (`amount % 100 <> 0`, which selects exactly the six dollar rows and leaves payment 66 alone); `coalesce(payment_method, method)`, the six multiplied by 100 at the source, full refresh. |
+| opus-2 | yes | yes | Both; coupons in dollars from order 76 reconciled to the cent (27 and 33); `coalesce` plus a cut-over on the first bad payment id, which is 86; full refresh. |
+| opus-3 | yes | yes | Both; `coalesce`, and the March and April batch reloaded in cents by ingestion rather than a guessed rule, full refresh. |
+
+Opus: 3 of 3 found, 3 of 3 fixed. That changes the mixed-case story: the larger model finds both defects every time and scopes the unit fix to the six rows (by whole-cent residue, by first bad id, or by reloading the batch), where two Sonnet runs over-generalised and Haiku saw the rename only. The case is still 9 of 18 found and 7 of 18 fixed across the three models.

@@ -26,3 +26,16 @@ zero-amount payments in the clean data.
 **What it says.** Five of six on both counts. The miss is a direction error: Haiku-2 read the gap as missing rows rather
 than shrunken ones and never looked at the 0.02 values in front of it. The partial switch did not trouble the other
 five: all of them placed the boundary from the one cents row still in March (order 58).
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Six coupon rows in dollars from about 20 March, order 58 still in cents; update the six at the source, full refresh; a sub-dollar test and the ledger reconciliation. |
+| opus-2 | yes | yes | Same; the update takes its ids from an inspect query (`amount < 100` on coupons). |
+| opus-3 | yes | yes | Same; the ids from an `ordered_at >= 2 March` coupon query, which selects exactly the six. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

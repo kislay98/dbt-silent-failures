@@ -25,3 +25,16 @@ broken data, the day-by-day reconciliation with 11 days, the admin count check w
 **What it says.** Six of six with the seeds hidden and the seed row counts gone from the log: every run reconstructed
 the replayed block from the three visible pairs and the arithmetic (16 rows, 241.00). All six also read the stale
 `daily_revenue` as a second defect, the three-day lookback, and fixed it.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | 16 copies found by the natural key; guessed the id range as 101 to 116 (it is 100 to 115) but deletes by the natural-key join, which removes exactly the 16 and their payments; full refresh. |
+| opus-2 | yes | yes | Ids 100 to 115 for 36 to 51, natural-key delete, full refresh; warns that a staging dedupe would leave the replayed payments in a NULL-customer group. |
+| opus-3 | yes | yes | `row_number` dedupe into a temp table, delete, full refresh. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

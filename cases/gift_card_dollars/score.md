@@ -46,3 +46,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | haiku-3 | yes | yes | Same; unit test plus a per-order provider statement. |
 
 The per-method control-total test is the same shape as the one verified for haiku-1 and fails on the broken data.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | The twelve rows listed, cents restored in the seed, full refresh; a sub-dollar guard and a control-total seed. |
+| opus-2 | yes | yes | Same. |
+| opus-3 | yes | yes | Same. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

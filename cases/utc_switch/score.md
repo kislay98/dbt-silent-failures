@@ -53,3 +53,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | haiku-3 | yes | no | Mixed conventions; normalise the pre-cut-over rows at the source then convert; the 15 March boundary gives the same partial result. |
 
 All six runs now place the switch; none can place it before 15 March from the prompt, so every fix leaves the 1 to 14 March times of day 5h30 early while every `order_date` comes out right. Under the strict rubric that is 6 of 6 found, 0 of 6 fixed.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | no | Mixed conventions, shop-local until mid-March and 5h30 behind from about order 73; reconciles 26 to 28 March; says to check 23 and 24 March to place the switch between 73 and 84. Fix: an offset-aware parse, or a branch on `order_id >= 73` if the new rows are plain UTC: every date right, orders 57 to 72 still 5h30 early. |
+| opus-2 | yes | no | Same switch at about order 73, keyed on an id var; same partial result; a daily-count reconciliation against an app export as the test. |
+| opus-3 | yes | no | Third attempt after two hung calls. Same switch at order 73, with the older rows converted local-to-UTC and every date derived in shop time: every date right, and orders 57 to 72 shifted a second time; asks ops to check 23 and 24 March, which would place the switch earlier. |
+
+Opus: 3 of 3 found, 0 of 3 fixed. The cut-over rule holds for the larger model too: it places the switch at order 73 like every other run, so every date comes out right and the sixteen times of day before 16 March stay 5h30 early.

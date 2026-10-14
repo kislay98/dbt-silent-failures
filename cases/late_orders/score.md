@@ -40,3 +40,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | sonnet-3 | yes | yes | Same. |
 | haiku-2 | yes | yes | Same; notes the model's comment describes the wrong mechanism. |
 | haiku-3 | yes | yes | Same. |
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Six late February orders outside the three-day window; full refresh, then a table or a `_loaded_at`-driven window. |
+| opus-2 | yes | yes | Same; also offers an incremental filter that rebuilds any day whose totals differ from `orders`, which works. |
+| opus-3 | yes | yes | Same. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

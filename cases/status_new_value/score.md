@@ -22,3 +22,16 @@ is a guard, not a fix; the reconciliation against the admin total fails on the b
 
 **What it says.** Six of six. Every run asked finance to confirm that `delivered` counts as completed before shipping,
 and every run named the widened test list as the reason the build stayed green.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | `delivered` from March is what the admin counts as completed, both `accepted_values` lists widened with no model change; `delivered` mapped to completed in staging keeping `source_status`, lists restored, reconciliation to the source definition. |
+| opus-2 | yes | yes | Same mapping; strict `accepted_values` on the mapped column as the guard. |
+| opus-3 | yes | yes | An `is_completed` flag in staging used by `customers` and `orders`, `status` kept as a real state; a status-to-revenue mapping seed with a `relationships` test so a new status cannot be accepted without a decision. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

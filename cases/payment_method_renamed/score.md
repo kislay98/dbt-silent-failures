@@ -23,3 +23,16 @@ which every run said in its own words.
 
 **What it says.** Six of six. With the column list in the prompt the rename is a short inference, and every run also
 asked for the vocabulary of `method` to be checked before trusting the `coalesce`.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | The feed writes `method` from March and leaves `payment_method` NULL, the case buckets fall to 0 while `amount` holds; `coalesce(payment_method, method)` in staging with a mapping if the labels differ; `not_null` plus a buckets-add-up test. |
+| opus-2 | yes | yes | Same. |
+| opus-3 | yes | yes | Same. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

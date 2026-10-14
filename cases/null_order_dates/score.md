@@ -24,3 +24,16 @@ revenue, or of `orders` by day, against `daily_revenue`.
 **What it says.** Six of six. The NULL bucket in the monthly query and the eight NULL timestamps in the staging sample
 left little to infer; the interesting part is that all three Sonnet runs warned that a full refresh of the dashboard
 before the reload would destroy the only correct copy of March, which the ground truth had not spelled out.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | `ordered_at` NULL on ids 66 to 73, `daily_revenue` right by luck; restore the timestamps from the admin at the source, make the loader fail loudly, full refresh. |
+| opus-2 | yes | yes | Same; lists the day each lost order sits on from `daily_revenue`. |
+| opus-3 | yes | yes | Same; warns not to full-refresh `daily_revenue` before the data is back. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

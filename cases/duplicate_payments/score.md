@@ -47,3 +47,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | haiku-3 | yes | yes | Same; checked ids 1 to 113 by hand for legitimate pairs. |
 
 These four runs saw the prompt assembled from the grown project (40 tests, seeds shown), unlike run 1.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | All twelve rows 114 to 125 with the right originals; delete and full refresh; declines the staging dedupe because the order 18 and 79 splits are legitimate; (order, method, amount) test. |
+| opus-2 | yes | yes | Same table and fix. |
+| opus-3 | yes | yes | Same table and fix. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

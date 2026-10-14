@@ -23,3 +23,16 @@ clean; so does the settlement total.
 
 **What it says.** Five of six found, six of six fixed. The one miss is arithmetic: Haiku-2 did not divide 190,000 by
 19 and concluded the factors differed, then recommended a reload that happens to cover every affected row.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Bank transfers in millionths from payment 83 (order 73, 16 March), reconciled 48 + 114 = 162 and 390,000 / 10,000 = 39; divide the rows from id 83 by 10,000 at the source after confirming the boundary, an explicit cut-over in staging as the stopgap, full refresh; a payment ceiling test. |
+| opus-2 | yes | yes | Same; rejects a size heuristic because a 100.00 payment in cents is also a multiple of 10,000. |
+| opus-3 | yes | yes | Same; the cut-over id as a var. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

@@ -26,3 +26,16 @@ and passes clean.
 `utc_switch_blind` is that there is no boundary to find: every row is shifted, so the blanket conversion that broke
 January in the switch cases is the right fix here. Every run still attributed the dashboard's agreement with the
 admin to an earlier version of the model rather than to a re-export of the feed, which the prompt leaves open.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Every timestamp is UTC and the business day is India's; the sampled orders after 18:30 UTC reproduce every admin count; `at time zone` conversion of every row before the date, docs changed from Date (UTC), full refresh; a unit test on the 18:30 boundary. |
+| opus-2 | yes | yes | Same; infers from the stale `daily_revenue` rows that the feed used to hold local time and the history was reloaded as UTC. |
+| opus-3 | yes | yes | Same; lists the five admin-only days that have no UTC-side orders. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

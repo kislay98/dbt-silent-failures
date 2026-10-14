@@ -39,3 +39,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | sonnet-3 | yes | yes | Same fix; its reconciliation test filters `orders` with the case-sensitive comparison, so it passes on the broken data (checked) and its claim that it would have fired is wrong. |
 | haiku-2 | yes | yes | `lower(status)`, narrowed lists, reconciliation on `lower(status)`. |
 | haiku-3 | yes | yes | Same. |
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Title-case statuses from February, 36 completed plus 31 Completed = 1103, both lists widened; `lower(trim(status))` in staging, lists restored, a casing-proof reconciliation. |
+| opus-2 | yes | yes | Same. |
+| opus-3 | yes | yes | Same. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

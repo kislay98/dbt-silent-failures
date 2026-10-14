@@ -41,3 +41,16 @@ Two more runs per model, same command, prompt assembled by `check_case.py` from 
 | sonnet-3 | yes | yes | `coalesce`; says itself that a customers-against-orders reconciliation would not catch this. |
 | haiku-2 | yes | yes | `coalesce` after a disagreement check. |
 | haiku-3 | yes | yes | `order_status as status`, which works because the column is backfilled. |
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | The feed moved the status to `order_status` from March, 0 of 43 rows with a status, `accepted_values` skips NULL; `coalesce(status, order_status)` in `stg_orders` after checking the vocabulary; `not_null` next to `accepted_values`. |
+| opus-2 | yes | yes | Same. |
+| opus-3 | yes | yes | Same; a two-column consistency test. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

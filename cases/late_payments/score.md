@@ -23,3 +23,16 @@ which no run proposed, would also have reached back to 9 January.
 
 **What it says.** Six of six. The late payment ids in the sample and the model's own comment ("a day or two") gave
 every run the mechanism, and all six chose to drop the incremental logic rather than widen the window.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | Late second payments (114 and up) on February orders, the window keyed on order date; full refresh, then a table or a changed-day rebuild. |
+| opus-2 | yes | yes | Same. |
+| opus-3 | yes | yes | Same, with an incremental variant that writes only changed days. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

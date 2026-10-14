@@ -24,3 +24,16 @@ fails with 6 customers on the broken data, the revenue reconciliation with 1 row
 
 **What it says.** Six of six, and every run chose the current region because the prompt said finance reports by it.
 Without that sentence the as-of join would be a defensible alternative; the ground truth records both.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | The feed is a change history and customers who moved count in both regions (+356 revenue, +20 order-region pairs, +6 customer-region pairs); latest row per customer in `stg_customer_regions` with tests, `region_revenue` reads it. |
+| opus-2 | yes | yes | Same. |
+| opus-3 | yes | yes | Same; also declares the table a source and left-joins with an UNKNOWN bucket, same output. |
+
+Opus: 3 of 3 found, 3 of 3 fixed.

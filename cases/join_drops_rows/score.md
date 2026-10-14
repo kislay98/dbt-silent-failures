@@ -21,3 +21,16 @@ All of them pass on clean data (43/43). No run proposed a warehouse-side repair,
 
 **What it says.** Five of six. The miss is a direction error, not a mechanism error: the model saw unmatched payments
 and decided the orders were missing rather than the keys, and its own check would have hidden the evidence.
+
+## Opus runs (week 6)
+
+Three runs of `claude-opus-5-5`, same command, prompt assembled by `check_case.py` from the project at f769fdf, before
+the week 6 lookup extension, so the same project the other two models saw; verdicts in `results.csv`.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| opus-1 | yes | yes | 13 payments whose key matches no order, the keys wrong rather than the orders missing; said "wrong ids, an offset or typo" rather than empty, but its listing query is a left join that finds the NULL keys; fix at the source from the processor mapping, no join change; `not_null` plus `relationships`. |
+| opus-2 | yes | yes | Same; adds an unmatched-payments model and the staging-against-marts reconciliation. |
+| opus-3 | no | yes | Re-run after a hung call, separate prompt build. 13 unmatched payments, then a hedge: mis-keyed payments or orders missing from `raw_orders`, "the query will tell"; the fix is at the source either way and its listing query shows NULL keys, so the branch the data picks restores the clean output. |
+
+Opus: 2 of 3 found, 3 of 3 fixed. The third run was made separately after a hung call and its root-cause verdict is the one hedge in the Opus set: it offered orders-missing as an alternative to keys-missing instead of choosing.
