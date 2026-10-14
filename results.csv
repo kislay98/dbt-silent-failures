@@ -1,289 +1,577 @@
-case,type,model,run,root_cause,fix
-duplicate_payments,duplicate rows,sonnet,1,yes,yes
-duplicate_payments,duplicate rows,sonnet,2,yes,yes
-duplicate_payments,duplicate rows,sonnet,3,yes,yes
-duplicate_payments,duplicate rows,haiku,1,yes,yes
-duplicate_payments,duplicate rows,haiku,2,yes,yes
-duplicate_payments,duplicate rows,haiku,3,yes,yes
-gift_card_dollars,unit change,sonnet,1,yes,yes
-gift_card_dollars,unit change,sonnet,2,yes,yes
-gift_card_dollars,unit change,sonnet,3,yes,yes
-gift_card_dollars,unit change,haiku,1,yes,yes
-gift_card_dollars,unit change,haiku,2,yes,yes
-gift_card_dollars,unit change,haiku,3,yes,yes
-region_fanout,join fan-out,sonnet,1,yes,yes
-region_fanout,join fan-out,sonnet,2,yes,yes
-region_fanout,join fan-out,sonnet,3,yes,yes
-region_fanout,join fan-out,haiku,1,yes,yes
-region_fanout,join fan-out,haiku,2,yes,yes
-region_fanout,join fan-out,haiku,3,yes,yes
-status_renamed,schema drift,sonnet,1,yes,yes
-status_renamed,schema drift,sonnet,2,yes,yes
-status_renamed,schema drift,sonnet,3,yes,yes
-status_renamed,schema drift,haiku,1,yes,yes
-status_renamed,schema drift,haiku,2,yes,yes
-status_renamed,schema drift,haiku,3,yes,yes
-utc_switch,timezone shift,sonnet,1,yes,no
-utc_switch,timezone shift,sonnet,2,yes,no
-utc_switch,timezone shift,sonnet,3,yes,no
-utc_switch,timezone shift,haiku,1,yes,no
-utc_switch,timezone shift,haiku,2,yes,no
-utc_switch,timezone shift,haiku,3,yes,no
-late_orders,late data,sonnet,1,yes,yes
-late_orders,late data,sonnet,2,yes,yes
-late_orders,late data,sonnet,3,yes,yes
-late_orders,late data,haiku,1,yes,yes
-late_orders,late data,haiku,2,yes,yes
-late_orders,late data,haiku,3,yes,yes
-status_title_case,category change,sonnet,1,yes,yes
-status_title_case,category change,sonnet,2,yes,yes
-status_title_case,category change,sonnet,3,yes,yes
-status_title_case,category change,haiku,1,yes,yes
-status_title_case,category change,haiku,2,yes,yes
-status_title_case,category change,haiku,3,yes,yes
-join_drops_rows,null flood,sonnet,1,yes,yes
-join_drops_rows,null flood,sonnet,2,yes,yes
-join_drops_rows,null flood,sonnet,3,yes,yes
-join_drops_rows,null flood,haiku,1,yes,yes
-join_drops_rows,null flood,haiku,2,no,no
-join_drops_rows,null flood,haiku,3,yes,yes
-utc_switch_blind,timezone shift,sonnet,1,no,no
-utc_switch_blind,timezone shift,sonnet,2,no,no
-utc_switch_blind,timezone shift,sonnet,3,yes,no
-utc_switch_blind,timezone shift,haiku,1,no,no
-utc_switch_blind,timezone shift,haiku,2,yes,no
-utc_switch_blind,timezone shift,haiku,3,yes,no
-late_and_duplicate,mixed,sonnet,1,yes,yes
-late_and_duplicate,mixed,sonnet,2,yes,yes
-late_and_duplicate,mixed,sonnet,3,yes,yes
-late_and_duplicate,mixed,haiku,1,yes,yes
-late_and_duplicate,mixed,haiku,2,yes,yes
-late_and_duplicate,mixed,haiku,3,yes,yes
-duplicate_orders,duplicate rows,sonnet,1,yes,yes
-duplicate_orders,duplicate rows,sonnet,2,yes,yes
-duplicate_orders,duplicate rows,sonnet,3,yes,yes
-duplicate_orders,duplicate rows,haiku,1,yes,yes
-duplicate_orders,duplicate rows,haiku,2,yes,yes
-duplicate_orders,duplicate rows,haiku,3,yes,yes
-coupon_cents,unit change,sonnet,1,yes,yes
-coupon_cents,unit change,sonnet,2,yes,yes
-coupon_cents,unit change,sonnet,3,yes,yes
-coupon_cents,unit change,haiku,1,yes,yes
-coupon_cents,unit change,haiku,2,no,no
-coupon_cents,unit change,haiku,3,yes,yes
-payment_method_renamed,schema drift,sonnet,1,yes,yes
-payment_method_renamed,schema drift,sonnet,2,yes,yes
-payment_method_renamed,schema drift,sonnet,3,yes,yes
-payment_method_renamed,schema drift,haiku,1,yes,yes
-payment_method_renamed,schema drift,haiku,2,yes,yes
-payment_method_renamed,schema drift,haiku,3,yes,yes
-late_payments,late data,sonnet,1,yes,yes
-late_payments,late data,sonnet,2,yes,yes
-late_payments,late data,sonnet,3,yes,yes
-late_payments,late data,haiku,1,yes,yes
-late_payments,late data,haiku,2,yes,yes
-late_payments,late data,haiku,3,yes,yes
-status_new_value,category change,sonnet,1,yes,yes
-status_new_value,category change,sonnet,2,yes,yes
-status_new_value,category change,sonnet,3,yes,yes
-status_new_value,category change,haiku,1,yes,yes
-status_new_value,category change,haiku,2,yes,yes
-status_new_value,category change,haiku,3,yes,yes
-regions_fanout_history,join fan-out,sonnet,1,yes,yes
-regions_fanout_history,join fan-out,sonnet,2,yes,yes
-regions_fanout_history,join fan-out,sonnet,3,yes,yes
-regions_fanout_history,join fan-out,haiku,1,yes,yes
-regions_fanout_history,join fan-out,haiku,2,yes,yes
-regions_fanout_history,join fan-out,haiku,3,yes,yes
-null_order_dates,null flood,sonnet,1,yes,yes
-null_order_dates,null flood,sonnet,2,yes,yes
-null_order_dates,null flood,sonnet,3,yes,yes
-null_order_dates,null flood,haiku,1,yes,yes
-null_order_dates,null flood,haiku,2,yes,yes
-null_order_dates,null flood,haiku,3,yes,yes
-null_payment_amounts,null flood,sonnet,1,yes,yes
-null_payment_amounts,null flood,sonnet,2,yes,yes
-null_payment_amounts,null flood,sonnet,3,yes,yes
-null_payment_amounts,null flood,haiku,1,yes,yes
-null_payment_amounts,null flood,haiku,2,yes,yes
-null_payment_amounts,null flood,haiku,3,yes,no
-utc_reexport,timezone shift,sonnet,1,yes,yes
-utc_reexport,timezone shift,sonnet,2,yes,yes
-utc_reexport,timezone shift,sonnet,3,yes,yes
-utc_reexport,timezone shift,haiku,1,yes,yes
-utc_reexport,timezone shift,haiku,2,yes,yes
-utc_reexport,timezone shift,haiku,3,yes,yes
-transfers_in_micros,unit change,sonnet,1,yes,yes
-transfers_in_micros,unit change,sonnet,2,yes,yes
-transfers_in_micros,unit change,sonnet,3,yes,yes
-transfers_in_micros,unit change,haiku,1,yes,yes
-transfers_in_micros,unit change,haiku,2,no,yes
-transfers_in_micros,unit change,haiku,3,yes,yes
-units_and_rename,mixed,sonnet,1,yes,no
-units_and_rename,mixed,sonnet,2,yes,no
-units_and_rename,mixed,sonnet,3,yes,yes
-units_and_rename,mixed,haiku,1,no,no
-units_and_rename,mixed,haiku,2,no,no
-units_and_rename,mixed,haiku,3,no,no
-coupon_cents,unit change,opus,1,yes,yes
-coupon_cents,unit change,opus,2,yes,yes
-coupon_cents,unit change,opus,3,yes,yes
-duplicate_orders,duplicate rows,opus,1,yes,yes
-duplicate_orders,duplicate rows,opus,2,yes,yes
-duplicate_orders,duplicate rows,opus,3,yes,yes
-duplicate_payments,duplicate rows,opus,1,yes,yes
-duplicate_payments,duplicate rows,opus,2,yes,yes
-duplicate_payments,duplicate rows,opus,3,yes,yes
-gift_card_dollars,unit change,opus,1,yes,yes
-gift_card_dollars,unit change,opus,2,yes,yes
-gift_card_dollars,unit change,opus,3,yes,yes
-join_drops_rows,null flood,opus,1,yes,yes
-join_drops_rows,null flood,opus,2,yes,yes
-join_drops_rows,null flood,opus,3,no,yes
-late_and_duplicate,mixed,opus,1,yes,yes
-late_and_duplicate,mixed,opus,2,yes,yes
-late_and_duplicate,mixed,opus,3,yes,yes
-late_orders,late data,opus,1,yes,yes
-late_orders,late data,opus,2,yes,yes
-late_orders,late data,opus,3,yes,yes
-late_payments,late data,opus,1,yes,yes
-late_payments,late data,opus,2,yes,yes
-late_payments,late data,opus,3,yes,yes
-null_order_dates,null flood,opus,1,yes,yes
-null_order_dates,null flood,opus,2,yes,yes
-null_order_dates,null flood,opus,3,yes,yes
-null_payment_amounts,null flood,opus,1,yes,yes
-null_payment_amounts,null flood,opus,2,yes,yes
-null_payment_amounts,null flood,opus,3,yes,yes
-payment_methods_fanout,join fan-out,sonnet,1,yes,yes
-payment_methods_fanout,join fan-out,sonnet,2,yes,yes
-payment_methods_fanout,join fan-out,sonnet,3,yes,yes
-payment_methods_fanout,join fan-out,haiku,1,yes,yes
-payment_methods_fanout,join fan-out,haiku,2,yes,yes
-payment_methods_fanout,join fan-out,haiku,3,yes,yes
-payment_method_renamed,schema drift,opus,1,yes,yes
-payment_method_renamed,schema drift,opus,2,yes,yes
-payment_method_renamed,schema drift,opus,3,yes,yes
-processor_history,join fan-out,sonnet,1,yes,yes
-processor_history,join fan-out,sonnet,2,yes,yes
-processor_history,join fan-out,sonnet,3,yes,yes
-processor_history,join fan-out,haiku,1,yes,yes
-processor_history,join fan-out,haiku,2,yes,yes
-processor_history,join fan-out,haiku,3,yes,yes
-region_fanout,join fan-out,opus,1,yes,yes
-region_fanout,join fan-out,opus,2,yes,yes
-region_fanout,join fan-out,opus,3,yes,yes
-regions_fanout_history,join fan-out,opus,1,yes,yes
-regions_fanout_history,join fan-out,opus,2,yes,yes
-regions_fanout_history,join fan-out,opus,3,yes,yes
-fanout_and_nulls,mixed,sonnet,1,yes,yes
-fanout_and_nulls,mixed,sonnet,2,yes,yes
-fanout_and_nulls,mixed,sonnet,3,yes,yes
-fanout_and_nulls,mixed,haiku,1,yes,yes
-fanout_and_nulls,mixed,haiku,2,yes,yes
-fanout_and_nulls,mixed,haiku,3,yes,yes
-status_new_value,category change,opus,1,yes,yes
-status_new_value,category change,opus,2,yes,yes
-status_new_value,category change,opus,3,yes,yes
-status_renamed,schema drift,opus,1,yes,yes
-status_renamed,schema drift,opus,2,yes,yes
-status_renamed,schema drift,opus,3,yes,yes
-duplicates_and_units,mixed,sonnet,1,yes,yes
-duplicates_and_units,mixed,sonnet,2,yes,yes
-duplicates_and_units,mixed,sonnet,3,yes,yes
-duplicates_and_units,mixed,haiku,1,no,no
-duplicates_and_units,mixed,haiku,2,yes,yes
-duplicates_and_units,mixed,haiku,3,yes,yes
-status_title_case,category change,opus,1,yes,yes
-status_title_case,category change,opus,2,yes,yes
-status_title_case,category change,opus,3,yes,yes
-rename_and_new_status,mixed,sonnet,1,yes,yes
-rename_and_new_status,mixed,sonnet,2,no,no
-rename_and_new_status,mixed,sonnet,3,yes,yes
-rename_and_new_status,mixed,haiku,1,yes,yes
-rename_and_new_status,mixed,haiku,2,no,no
-rename_and_new_status,mixed,haiku,3,no,no
-transfers_in_micros,unit change,opus,1,yes,yes
-transfers_in_micros,unit change,opus,2,yes,yes
-transfers_in_micros,unit change,opus,3,yes,yes
-units_and_rename,mixed,opus,1,yes,yes
-units_and_rename,mixed,opus,2,yes,yes
-units_and_rename,mixed,opus,3,yes,yes
-late_and_new_status,mixed,sonnet,1,yes,yes
-late_and_new_status,mixed,sonnet,2,yes,yes
-late_and_new_status,mixed,sonnet,3,yes,yes
-late_and_new_status,mixed,haiku,1,yes,yes
-late_and_new_status,mixed,haiku,2,yes,yes
-late_and_new_status,mixed,haiku,3,yes,yes
-utc_reexport,timezone shift,opus,1,yes,yes
-utc_reexport,timezone shift,opus,2,yes,yes
-utc_reexport,timezone shift,opus,3,yes,yes
-rename_and_utc,mixed,sonnet,1,yes,yes
-rename_and_utc,mixed,sonnet,2,yes,yes
-rename_and_utc,mixed,sonnet,3,yes,yes
-rename_and_utc,mixed,haiku,1,yes,yes
-rename_and_utc,mixed,haiku,2,yes,yes
-rename_and_utc,mixed,haiku,3,no,no
-payment_methods_fanout,join fan-out,opus,1,yes,yes
-payment_methods_fanout,join fan-out,opus,2,yes,yes
-payment_methods_fanout,join fan-out,opus,3,yes,yes
-processor_history,join fan-out,opus,1,yes,yes
-processor_history,join fan-out,opus,2,yes,yes
-processor_history,join fan-out,opus,3,yes,yes
-fanout_and_nulls,mixed,opus,1,yes,yes
-fanout_and_nulls,mixed,opus,2,yes,yes
-fanout_and_nulls,mixed,opus,3,yes,yes
-utc_switch,timezone shift,opus,1,yes,no
-utc_switch,timezone shift,opus,2,yes,no
-duplicates_and_units,mixed,opus,1,yes,yes
-duplicates_and_units,mixed,opus,2,yes,yes
-duplicates_and_units,mixed,opus,3,yes,yes
-utc_switch_blind,timezone shift,opus,1,yes,no
-utc_switch_blind,timezone shift,opus,2,yes,no
-utc_switch_blind,timezone shift,opus,3,yes,no
-rename_and_new_status,mixed,opus,1,no,no
-rename_and_new_status,mixed,opus,2,no,no
-rename_and_new_status,mixed,opus,3,no,no
-rename_and_utc,mixed,opus,1,yes,yes
-rename_and_utc,mixed,opus,2,yes,yes
-rename_and_utc,mixed,opus,3,yes,yes
-late_and_new_status,mixed,opus,1,yes,yes
-late_and_new_status,mixed,opus,2,yes,yes
-late_and_new_status,mixed,opus,3,yes,yes
-utc_switch,timezone shift,opus,3,yes,no
-late_and_timezone,mixed,sonnet,1,yes,yes
-late_and_timezone,mixed,sonnet,2,yes,yes
-late_and_timezone,mixed,sonnet,3,yes,yes
-late_and_timezone,mixed,haiku,1,no,no
-late_and_timezone,mixed,haiku,2,no,no
-late_and_timezone,mixed,haiku,3,yes,yes
-late_and_timezone,mixed,opus,1,yes,yes
-late_and_timezone,mixed,opus,2,yes,yes
-late_and_timezone,mixed,opus,3,yes,yes
-duplicates_and_rename,mixed,sonnet,1,no,no
-duplicates_and_rename,mixed,sonnet,2,no,no
-duplicates_and_rename,mixed,sonnet,3,no,no
-duplicates_and_rename,mixed,haiku,1,no,no
-duplicates_and_rename,mixed,haiku,2,no,no
-duplicates_and_rename,mixed,haiku,3,no,no
-duplicates_and_rename,mixed,opus,1,no,no
-duplicates_and_rename,mixed,opus,2,no,no
-duplicates_and_rename,mixed,opus,3,no,no
-category_and_units,mixed,sonnet,1,no,no
-category_and_units,mixed,sonnet,2,yes,yes
-category_and_units,mixed,sonnet,3,yes,yes
-category_and_units,mixed,haiku,1,no,no
-category_and_units,mixed,haiku,2,no,no
-category_and_units,mixed,haiku,3,no,no
-category_and_units,mixed,opus,1,yes,yes
-category_and_units,mixed,opus,2,yes,yes
-category_and_units,mixed,opus,3,yes,yes
-fanout_and_late,mixed,sonnet,1,yes,no
-fanout_and_late,mixed,sonnet,2,yes,no
-fanout_and_late,mixed,sonnet,3,yes,yes
-fanout_and_late,mixed,haiku,1,yes,yes
-fanout_and_late,mixed,haiku,2,yes,yes
-fanout_and_late,mixed,haiku,3,yes,yes
-fanout_and_late,mixed,opus,1,yes,yes
-fanout_and_late,mixed,opus,2,yes,yes
-fanout_and_late,mixed,opus,3,yes,yes
+case,type,samples,model,run,root_cause,fix,defects_found
+duplicate_payments,duplicate rows,curated,sonnet,1,yes,yes,1
+duplicate_payments,duplicate rows,curated,sonnet,2,yes,yes,1
+duplicate_payments,duplicate rows,curated,sonnet,3,yes,yes,1
+duplicate_payments,duplicate rows,curated,haiku,1,yes,yes,1
+duplicate_payments,duplicate rows,curated,haiku,2,yes,yes,1
+duplicate_payments,duplicate rows,curated,haiku,3,yes,yes,1
+gift_card_dollars,unit change,curated,sonnet,1,yes,yes,1
+gift_card_dollars,unit change,curated,sonnet,2,yes,yes,1
+gift_card_dollars,unit change,curated,sonnet,3,yes,yes,1
+gift_card_dollars,unit change,curated,haiku,1,yes,yes,1
+gift_card_dollars,unit change,curated,haiku,2,yes,yes,1
+gift_card_dollars,unit change,curated,haiku,3,yes,yes,1
+region_fanout,join fan-out,curated,sonnet,1,yes,yes,1
+region_fanout,join fan-out,curated,sonnet,2,yes,yes,1
+region_fanout,join fan-out,curated,sonnet,3,yes,yes,1
+region_fanout,join fan-out,curated,haiku,1,yes,yes,1
+region_fanout,join fan-out,curated,haiku,2,yes,yes,1
+region_fanout,join fan-out,curated,haiku,3,yes,yes,1
+status_renamed,schema drift,curated,sonnet,1,yes,yes,1
+status_renamed,schema drift,curated,sonnet,2,yes,yes,1
+status_renamed,schema drift,curated,sonnet,3,yes,yes,1
+status_renamed,schema drift,curated,haiku,1,yes,yes,1
+status_renamed,schema drift,curated,haiku,2,yes,yes,1
+status_renamed,schema drift,curated,haiku,3,yes,yes,1
+utc_switch,timezone shift,curated,sonnet,1,yes,no,1
+utc_switch,timezone shift,curated,sonnet,2,yes,no,1
+utc_switch,timezone shift,curated,sonnet,3,yes,no,1
+utc_switch,timezone shift,curated,haiku,1,yes,no,1
+utc_switch,timezone shift,curated,haiku,2,yes,no,1
+utc_switch,timezone shift,curated,haiku,3,yes,no,1
+late_orders,late data,curated,sonnet,1,yes,yes,1
+late_orders,late data,curated,sonnet,2,yes,yes,1
+late_orders,late data,curated,sonnet,3,yes,yes,1
+late_orders,late data,curated,haiku,1,yes,yes,1
+late_orders,late data,curated,haiku,2,yes,yes,1
+late_orders,late data,curated,haiku,3,yes,yes,1
+status_title_case,category change,curated,sonnet,1,yes,yes,1
+status_title_case,category change,curated,sonnet,2,yes,yes,1
+status_title_case,category change,curated,sonnet,3,yes,yes,1
+status_title_case,category change,curated,haiku,1,yes,yes,1
+status_title_case,category change,curated,haiku,2,yes,yes,1
+status_title_case,category change,curated,haiku,3,yes,yes,1
+join_drops_rows,null flood,curated,sonnet,1,yes,yes,1
+join_drops_rows,null flood,curated,sonnet,2,yes,yes,1
+join_drops_rows,null flood,curated,sonnet,3,yes,yes,1
+join_drops_rows,null flood,curated,haiku,1,yes,yes,1
+join_drops_rows,null flood,curated,haiku,2,no,no,0
+join_drops_rows,null flood,curated,haiku,3,yes,yes,1
+utc_switch_blind,timezone shift,curated,sonnet,1,no,no,0
+utc_switch_blind,timezone shift,curated,sonnet,2,no,no,0
+utc_switch_blind,timezone shift,curated,sonnet,3,yes,no,1
+utc_switch_blind,timezone shift,curated,haiku,1,no,no,0
+utc_switch_blind,timezone shift,curated,haiku,2,yes,no,1
+utc_switch_blind,timezone shift,curated,haiku,3,yes,no,1
+late_and_duplicate,mixed,curated,sonnet,1,yes,yes,2
+late_and_duplicate,mixed,curated,sonnet,2,yes,yes,2
+late_and_duplicate,mixed,curated,sonnet,3,yes,yes,2
+late_and_duplicate,mixed,curated,haiku,1,yes,yes,2
+late_and_duplicate,mixed,curated,haiku,2,yes,yes,2
+late_and_duplicate,mixed,curated,haiku,3,yes,yes,2
+duplicate_orders,duplicate rows,curated,sonnet,1,yes,yes,1
+duplicate_orders,duplicate rows,curated,sonnet,2,yes,yes,1
+duplicate_orders,duplicate rows,curated,sonnet,3,yes,yes,1
+duplicate_orders,duplicate rows,curated,haiku,1,yes,yes,1
+duplicate_orders,duplicate rows,curated,haiku,2,yes,yes,1
+duplicate_orders,duplicate rows,curated,haiku,3,yes,yes,1
+coupon_cents,unit change,curated,sonnet,1,yes,yes,1
+coupon_cents,unit change,curated,sonnet,2,yes,yes,1
+coupon_cents,unit change,curated,sonnet,3,yes,yes,1
+coupon_cents,unit change,curated,haiku,1,yes,yes,1
+coupon_cents,unit change,curated,haiku,2,no,no,0
+coupon_cents,unit change,curated,haiku,3,yes,yes,1
+payment_method_renamed,schema drift,curated,sonnet,1,yes,yes,1
+payment_method_renamed,schema drift,curated,sonnet,2,yes,yes,1
+payment_method_renamed,schema drift,curated,sonnet,3,yes,yes,1
+payment_method_renamed,schema drift,curated,haiku,1,yes,yes,1
+payment_method_renamed,schema drift,curated,haiku,2,yes,yes,1
+payment_method_renamed,schema drift,curated,haiku,3,yes,yes,1
+late_payments,late data,curated,sonnet,1,yes,yes,1
+late_payments,late data,curated,sonnet,2,yes,yes,1
+late_payments,late data,curated,sonnet,3,yes,yes,1
+late_payments,late data,curated,haiku,1,yes,yes,1
+late_payments,late data,curated,haiku,2,yes,yes,1
+late_payments,late data,curated,haiku,3,yes,yes,1
+status_new_value,category change,curated,sonnet,1,yes,yes,1
+status_new_value,category change,curated,sonnet,2,yes,yes,1
+status_new_value,category change,curated,sonnet,3,yes,yes,1
+status_new_value,category change,curated,haiku,1,yes,yes,1
+status_new_value,category change,curated,haiku,2,yes,yes,1
+status_new_value,category change,curated,haiku,3,yes,yes,1
+regions_fanout_history,join fan-out,curated,sonnet,1,yes,yes,1
+regions_fanout_history,join fan-out,curated,sonnet,2,yes,yes,1
+regions_fanout_history,join fan-out,curated,sonnet,3,yes,yes,1
+regions_fanout_history,join fan-out,curated,haiku,1,yes,yes,1
+regions_fanout_history,join fan-out,curated,haiku,2,yes,yes,1
+regions_fanout_history,join fan-out,curated,haiku,3,yes,yes,1
+null_order_dates,null flood,curated,sonnet,1,yes,yes,1
+null_order_dates,null flood,curated,sonnet,2,yes,yes,1
+null_order_dates,null flood,curated,sonnet,3,yes,yes,1
+null_order_dates,null flood,curated,haiku,1,yes,yes,1
+null_order_dates,null flood,curated,haiku,2,yes,yes,1
+null_order_dates,null flood,curated,haiku,3,yes,yes,1
+null_payment_amounts,null flood,curated,sonnet,1,yes,yes,1
+null_payment_amounts,null flood,curated,sonnet,2,yes,yes,1
+null_payment_amounts,null flood,curated,sonnet,3,yes,yes,1
+null_payment_amounts,null flood,curated,haiku,1,yes,yes,1
+null_payment_amounts,null flood,curated,haiku,2,yes,yes,1
+null_payment_amounts,null flood,curated,haiku,3,yes,no,1
+utc_reexport,timezone shift,curated,sonnet,1,yes,yes,1
+utc_reexport,timezone shift,curated,sonnet,2,yes,yes,1
+utc_reexport,timezone shift,curated,sonnet,3,yes,yes,1
+utc_reexport,timezone shift,curated,haiku,1,yes,yes,1
+utc_reexport,timezone shift,curated,haiku,2,yes,yes,1
+utc_reexport,timezone shift,curated,haiku,3,yes,yes,1
+transfers_in_micros,unit change,curated,sonnet,1,yes,yes,1
+transfers_in_micros,unit change,curated,sonnet,2,yes,yes,1
+transfers_in_micros,unit change,curated,sonnet,3,yes,yes,1
+transfers_in_micros,unit change,curated,haiku,1,yes,yes,1
+transfers_in_micros,unit change,curated,haiku,2,no,yes,0
+transfers_in_micros,unit change,curated,haiku,3,yes,yes,1
+units_and_rename,mixed,curated,sonnet,1,yes,no,2
+units_and_rename,mixed,curated,sonnet,2,yes,no,2
+units_and_rename,mixed,curated,sonnet,3,yes,yes,2
+units_and_rename,mixed,curated,haiku,1,no,no,1
+units_and_rename,mixed,curated,haiku,2,no,no,1
+units_and_rename,mixed,curated,haiku,3,no,no,1
+coupon_cents,unit change,curated,opus,1,yes,yes,1
+coupon_cents,unit change,curated,opus,2,yes,yes,1
+coupon_cents,unit change,curated,opus,3,yes,yes,1
+duplicate_orders,duplicate rows,curated,opus,1,yes,yes,1
+duplicate_orders,duplicate rows,curated,opus,2,yes,yes,1
+duplicate_orders,duplicate rows,curated,opus,3,yes,yes,1
+duplicate_payments,duplicate rows,curated,opus,1,yes,yes,1
+duplicate_payments,duplicate rows,curated,opus,2,yes,yes,1
+duplicate_payments,duplicate rows,curated,opus,3,yes,yes,1
+gift_card_dollars,unit change,curated,opus,1,yes,yes,1
+gift_card_dollars,unit change,curated,opus,2,yes,yes,1
+gift_card_dollars,unit change,curated,opus,3,yes,yes,1
+join_drops_rows,null flood,curated,opus,1,yes,yes,1
+join_drops_rows,null flood,curated,opus,2,yes,yes,1
+join_drops_rows,null flood,curated,opus,3,no,yes,0
+late_and_duplicate,mixed,curated,opus,1,yes,yes,2
+late_and_duplicate,mixed,curated,opus,2,yes,yes,2
+late_and_duplicate,mixed,curated,opus,3,yes,yes,2
+late_orders,late data,curated,opus,1,yes,yes,1
+late_orders,late data,curated,opus,2,yes,yes,1
+late_orders,late data,curated,opus,3,yes,yes,1
+late_payments,late data,curated,opus,1,yes,yes,1
+late_payments,late data,curated,opus,2,yes,yes,1
+late_payments,late data,curated,opus,3,yes,yes,1
+null_order_dates,null flood,curated,opus,1,yes,yes,1
+null_order_dates,null flood,curated,opus,2,yes,yes,1
+null_order_dates,null flood,curated,opus,3,yes,yes,1
+null_payment_amounts,null flood,curated,opus,1,yes,yes,1
+null_payment_amounts,null flood,curated,opus,2,yes,yes,1
+null_payment_amounts,null flood,curated,opus,3,yes,yes,1
+payment_methods_fanout,join fan-out,curated,sonnet,1,yes,yes,1
+payment_methods_fanout,join fan-out,curated,sonnet,2,yes,yes,1
+payment_methods_fanout,join fan-out,curated,sonnet,3,yes,yes,1
+payment_methods_fanout,join fan-out,curated,haiku,1,yes,yes,1
+payment_methods_fanout,join fan-out,curated,haiku,2,yes,yes,1
+payment_methods_fanout,join fan-out,curated,haiku,3,yes,yes,1
+payment_method_renamed,schema drift,curated,opus,1,yes,yes,1
+payment_method_renamed,schema drift,curated,opus,2,yes,yes,1
+payment_method_renamed,schema drift,curated,opus,3,yes,yes,1
+processor_history,join fan-out,curated,sonnet,1,yes,yes,1
+processor_history,join fan-out,curated,sonnet,2,yes,yes,1
+processor_history,join fan-out,curated,sonnet,3,yes,yes,1
+processor_history,join fan-out,curated,haiku,1,yes,yes,1
+processor_history,join fan-out,curated,haiku,2,yes,yes,1
+processor_history,join fan-out,curated,haiku,3,yes,yes,1
+region_fanout,join fan-out,curated,opus,1,yes,yes,1
+region_fanout,join fan-out,curated,opus,2,yes,yes,1
+region_fanout,join fan-out,curated,opus,3,yes,yes,1
+regions_fanout_history,join fan-out,curated,opus,1,yes,yes,1
+regions_fanout_history,join fan-out,curated,opus,2,yes,yes,1
+regions_fanout_history,join fan-out,curated,opus,3,yes,yes,1
+fanout_and_nulls,mixed,curated,sonnet,1,yes,yes,2
+fanout_and_nulls,mixed,curated,sonnet,2,yes,yes,2
+fanout_and_nulls,mixed,curated,sonnet,3,yes,yes,2
+fanout_and_nulls,mixed,curated,haiku,1,yes,yes,2
+fanout_and_nulls,mixed,curated,haiku,2,yes,yes,2
+fanout_and_nulls,mixed,curated,haiku,3,yes,yes,2
+status_new_value,category change,curated,opus,1,yes,yes,1
+status_new_value,category change,curated,opus,2,yes,yes,1
+status_new_value,category change,curated,opus,3,yes,yes,1
+status_renamed,schema drift,curated,opus,1,yes,yes,1
+status_renamed,schema drift,curated,opus,2,yes,yes,1
+status_renamed,schema drift,curated,opus,3,yes,yes,1
+duplicates_and_units,mixed,curated,sonnet,1,yes,yes,2
+duplicates_and_units,mixed,curated,sonnet,2,yes,yes,2
+duplicates_and_units,mixed,curated,sonnet,3,yes,yes,2
+duplicates_and_units,mixed,curated,haiku,1,no,no,1
+duplicates_and_units,mixed,curated,haiku,2,yes,yes,2
+duplicates_and_units,mixed,curated,haiku,3,yes,yes,2
+status_title_case,category change,curated,opus,1,yes,yes,1
+status_title_case,category change,curated,opus,2,yes,yes,1
+status_title_case,category change,curated,opus,3,yes,yes,1
+rename_and_new_status,mixed,curated,sonnet,1,yes,yes,2
+rename_and_new_status,mixed,curated,sonnet,2,no,no,1
+rename_and_new_status,mixed,curated,sonnet,3,yes,yes,2
+rename_and_new_status,mixed,curated,haiku,1,yes,yes,2
+rename_and_new_status,mixed,curated,haiku,2,no,no,1
+rename_and_new_status,mixed,curated,haiku,3,no,no,1
+transfers_in_micros,unit change,curated,opus,1,yes,yes,1
+transfers_in_micros,unit change,curated,opus,2,yes,yes,1
+transfers_in_micros,unit change,curated,opus,3,yes,yes,1
+units_and_rename,mixed,curated,opus,1,yes,yes,2
+units_and_rename,mixed,curated,opus,2,yes,yes,2
+units_and_rename,mixed,curated,opus,3,yes,yes,2
+late_and_new_status,mixed,curated,sonnet,1,yes,yes,2
+late_and_new_status,mixed,curated,sonnet,2,yes,yes,2
+late_and_new_status,mixed,curated,sonnet,3,yes,yes,2
+late_and_new_status,mixed,curated,haiku,1,yes,yes,2
+late_and_new_status,mixed,curated,haiku,2,yes,yes,2
+late_and_new_status,mixed,curated,haiku,3,yes,yes,2
+utc_reexport,timezone shift,curated,opus,1,yes,yes,1
+utc_reexport,timezone shift,curated,opus,2,yes,yes,1
+utc_reexport,timezone shift,curated,opus,3,yes,yes,1
+rename_and_utc,mixed,curated,sonnet,1,yes,yes,2
+rename_and_utc,mixed,curated,sonnet,2,yes,yes,2
+rename_and_utc,mixed,curated,sonnet,3,yes,yes,2
+rename_and_utc,mixed,curated,haiku,1,yes,yes,2
+rename_and_utc,mixed,curated,haiku,2,yes,yes,2
+rename_and_utc,mixed,curated,haiku,3,no,no,1
+payment_methods_fanout,join fan-out,curated,opus,1,yes,yes,1
+payment_methods_fanout,join fan-out,curated,opus,2,yes,yes,1
+payment_methods_fanout,join fan-out,curated,opus,3,yes,yes,1
+processor_history,join fan-out,curated,opus,1,yes,yes,1
+processor_history,join fan-out,curated,opus,2,yes,yes,1
+processor_history,join fan-out,curated,opus,3,yes,yes,1
+fanout_and_nulls,mixed,curated,opus,1,yes,yes,2
+fanout_and_nulls,mixed,curated,opus,2,yes,yes,2
+fanout_and_nulls,mixed,curated,opus,3,yes,yes,2
+utc_switch,timezone shift,curated,opus,1,yes,no,1
+utc_switch,timezone shift,curated,opus,2,yes,no,1
+duplicates_and_units,mixed,curated,opus,1,yes,yes,2
+duplicates_and_units,mixed,curated,opus,2,yes,yes,2
+duplicates_and_units,mixed,curated,opus,3,yes,yes,2
+utc_switch_blind,timezone shift,curated,opus,1,yes,no,1
+utc_switch_blind,timezone shift,curated,opus,2,yes,no,1
+utc_switch_blind,timezone shift,curated,opus,3,yes,no,1
+rename_and_new_status,mixed,curated,opus,1,no,no,1
+rename_and_new_status,mixed,curated,opus,2,no,no,1
+rename_and_new_status,mixed,curated,opus,3,no,no,1
+rename_and_utc,mixed,curated,opus,1,yes,yes,2
+rename_and_utc,mixed,curated,opus,2,yes,yes,2
+rename_and_utc,mixed,curated,opus,3,yes,yes,2
+late_and_new_status,mixed,curated,opus,1,yes,yes,2
+late_and_new_status,mixed,curated,opus,2,yes,yes,2
+late_and_new_status,mixed,curated,opus,3,yes,yes,2
+utc_switch,timezone shift,curated,opus,3,yes,no,1
+late_and_timezone,mixed,curated,sonnet,1,yes,yes,2
+late_and_timezone,mixed,curated,sonnet,2,yes,yes,2
+late_and_timezone,mixed,curated,sonnet,3,yes,yes,2
+late_and_timezone,mixed,curated,haiku,1,no,no,1
+late_and_timezone,mixed,curated,haiku,2,no,no,1
+late_and_timezone,mixed,curated,haiku,3,yes,yes,2
+late_and_timezone,mixed,curated,opus,1,yes,yes,2
+late_and_timezone,mixed,curated,opus,2,yes,yes,2
+late_and_timezone,mixed,curated,opus,3,yes,yes,2
+duplicates_and_rename,mixed,curated,sonnet,1,no,no,1
+duplicates_and_rename,mixed,curated,sonnet,2,no,no,1
+duplicates_and_rename,mixed,curated,sonnet,3,no,no,1
+duplicates_and_rename,mixed,curated,haiku,1,no,no,1
+duplicates_and_rename,mixed,curated,haiku,2,no,no,1
+duplicates_and_rename,mixed,curated,haiku,3,no,no,1
+duplicates_and_rename,mixed,curated,opus,1,no,no,1
+duplicates_and_rename,mixed,curated,opus,2,no,no,1
+duplicates_and_rename,mixed,curated,opus,3,no,no,1
+category_and_units,mixed,curated,sonnet,1,no,no,1
+category_and_units,mixed,curated,sonnet,2,yes,yes,2
+category_and_units,mixed,curated,sonnet,3,yes,yes,2
+category_and_units,mixed,curated,haiku,1,no,no,1
+category_and_units,mixed,curated,haiku,2,no,no,0
+category_and_units,mixed,curated,haiku,3,no,no,0
+category_and_units,mixed,curated,opus,1,yes,yes,2
+category_and_units,mixed,curated,opus,2,yes,yes,2
+category_and_units,mixed,curated,opus,3,yes,yes,2
+fanout_and_late,mixed,curated,sonnet,1,yes,no,2
+fanout_and_late,mixed,curated,sonnet,2,yes,no,2
+fanout_and_late,mixed,curated,sonnet,3,yes,yes,2
+fanout_and_late,mixed,curated,haiku,1,yes,yes,2
+fanout_and_late,mixed,curated,haiku,2,yes,yes,2
+fanout_and_late,mixed,curated,haiku,3,yes,yes,2
+fanout_and_late,mixed,curated,opus,1,yes,yes,2
+fanout_and_late,mixed,curated,opus,2,yes,yes,2
+fanout_and_late,mixed,curated,opus,3,yes,yes,2
+category_and_units,mixed,standard,sonnet,1,yes,yes,2
+category_and_units,mixed,standard,sonnet,2,yes,yes,2
+category_and_units,mixed,standard,sonnet,3,yes,yes,2
+category_and_units,mixed,standard,haiku,1,no,no,0
+category_and_units,mixed,standard,haiku,2,no,no,0
+category_and_units,mixed,standard,haiku,3,no,no,0
+category_and_units,mixed,standard,opus,1,yes,yes,2
+category_and_units,mixed,standard,opus,2,yes,yes,2
+category_and_units,mixed,standard,opus,3,yes,yes,2
+coupon_cents,unit change,standard,sonnet,1,yes,yes,1
+coupon_cents,unit change,standard,sonnet,2,yes,yes,1
+coupon_cents,unit change,standard,sonnet,3,yes,yes,1
+coupon_cents,unit change,standard,haiku,1,yes,no,1
+coupon_cents,unit change,standard,haiku,2,no,no,0
+coupon_cents,unit change,standard,haiku,3,no,no,0
+coupon_cents,unit change,standard,opus,1,yes,yes,1
+coupon_cents,unit change,standard,opus,2,yes,yes,1
+coupon_cents,unit change,standard,opus,3,yes,yes,1
+duplicate_orders,duplicate rows,standard,sonnet,1,yes,yes,1
+duplicate_orders,duplicate rows,standard,sonnet,2,yes,yes,1
+duplicate_orders,duplicate rows,standard,sonnet,3,yes,yes,1
+duplicate_orders,duplicate rows,standard,haiku,1,yes,yes,1
+duplicate_orders,duplicate rows,standard,haiku,2,yes,yes,1
+duplicate_orders,duplicate rows,standard,haiku,3,yes,yes,1
+duplicate_orders,duplicate rows,standard,opus,1,yes,yes,1
+duplicate_orders,duplicate rows,standard,opus,2,yes,yes,1
+duplicate_orders,duplicate rows,standard,opus,3,yes,yes,1
+duplicate_payments,duplicate rows,standard,sonnet,1,yes,yes,1
+duplicate_payments,duplicate rows,standard,sonnet,2,yes,yes,1
+duplicate_payments,duplicate rows,standard,sonnet,3,yes,yes,1
+duplicate_payments,duplicate rows,standard,haiku,1,yes,yes,1
+duplicate_payments,duplicate rows,standard,haiku,2,yes,yes,1
+duplicate_payments,duplicate rows,standard,haiku,3,yes,yes,1
+duplicate_payments,duplicate rows,standard,opus,1,yes,yes,1
+duplicate_payments,duplicate rows,standard,opus,2,yes,yes,1
+duplicate_payments,duplicate rows,standard,opus,3,yes,yes,1
+duplicates_and_rename,mixed,standard,sonnet,1,no,no,1
+duplicates_and_rename,mixed,standard,sonnet,2,no,no,1
+duplicates_and_rename,mixed,standard,sonnet,3,no,no,1
+duplicates_and_rename,mixed,standard,haiku,1,no,no,1
+duplicates_and_rename,mixed,standard,haiku,2,no,no,1
+duplicates_and_rename,mixed,standard,haiku,3,no,no,1
+duplicates_and_rename,mixed,standard,opus,1,no,no,1
+duplicates_and_rename,mixed,standard,opus,2,no,no,1
+duplicates_and_rename,mixed,standard,opus,3,no,no,1
+duplicates_and_units,mixed,standard,sonnet,1,yes,yes,2
+duplicates_and_units,mixed,standard,sonnet,2,yes,yes,2
+duplicates_and_units,mixed,standard,sonnet,3,yes,yes,2
+duplicates_and_units,mixed,standard,haiku,1,yes,no,2
+duplicates_and_units,mixed,standard,haiku,2,yes,yes,2
+duplicates_and_units,mixed,standard,haiku,3,yes,yes,2
+duplicates_and_units,mixed,standard,opus,1,yes,yes,2
+duplicates_and_units,mixed,standard,opus,2,yes,yes,2
+duplicates_and_units,mixed,standard,opus,3,yes,yes,2
+fanout_and_late,mixed,standard,sonnet,1,no,no,1
+fanout_and_late,mixed,standard,sonnet,2,yes,yes,2
+fanout_and_late,mixed,standard,sonnet,3,yes,yes,2
+fanout_and_late,mixed,standard,haiku,1,yes,yes,2
+fanout_and_late,mixed,standard,haiku,2,yes,yes,2
+fanout_and_late,mixed,standard,haiku,3,yes,yes,2
+fanout_and_late,mixed,standard,opus,1,no,no,1
+fanout_and_late,mixed,standard,opus,2,yes,yes,2
+fanout_and_late,mixed,standard,opus,3,yes,yes,2
+fanout_and_nulls,mixed,standard,sonnet,1,yes,yes,2
+fanout_and_nulls,mixed,standard,sonnet,2,yes,yes,2
+fanout_and_nulls,mixed,standard,sonnet,3,yes,yes,2
+fanout_and_nulls,mixed,standard,haiku,1,yes,yes,2
+fanout_and_nulls,mixed,standard,haiku,2,no,yes,1
+fanout_and_nulls,mixed,standard,haiku,3,yes,yes,2
+fanout_and_nulls,mixed,standard,opus,1,yes,yes,2
+fanout_and_nulls,mixed,standard,opus,2,yes,yes,2
+fanout_and_nulls,mixed,standard,opus,3,yes,yes,2
+gift_card_dollars,unit change,standard,sonnet,1,yes,yes,1
+gift_card_dollars,unit change,standard,sonnet,2,yes,yes,1
+gift_card_dollars,unit change,standard,sonnet,3,yes,yes,1
+gift_card_dollars,unit change,standard,haiku,1,yes,yes,1
+gift_card_dollars,unit change,standard,haiku,2,yes,yes,1
+gift_card_dollars,unit change,standard,haiku,3,yes,yes,1
+gift_card_dollars,unit change,standard,opus,1,yes,yes,1
+gift_card_dollars,unit change,standard,opus,2,yes,yes,1
+gift_card_dollars,unit change,standard,opus,3,yes,yes,1
+join_drops_rows,null flood,standard,sonnet,1,yes,yes,1
+join_drops_rows,null flood,standard,sonnet,2,yes,yes,1
+join_drops_rows,null flood,standard,sonnet,3,yes,yes,1
+join_drops_rows,null flood,standard,haiku,1,yes,yes,1
+join_drops_rows,null flood,standard,haiku,2,yes,yes,1
+join_drops_rows,null flood,standard,haiku,3,yes,yes,1
+join_drops_rows,null flood,standard,opus,1,yes,yes,1
+join_drops_rows,null flood,standard,opus,2,yes,yes,1
+join_drops_rows,null flood,standard,opus,3,yes,yes,1
+late_and_duplicate,mixed,standard,sonnet,1,yes,yes,2
+late_and_duplicate,mixed,standard,sonnet,2,yes,yes,2
+late_and_duplicate,mixed,standard,sonnet,3,yes,yes,2
+late_and_duplicate,mixed,standard,haiku,1,yes,yes,2
+late_and_duplicate,mixed,standard,haiku,2,yes,yes,2
+late_and_duplicate,mixed,standard,haiku,3,yes,yes,2
+late_and_duplicate,mixed,standard,opus,1,yes,yes,2
+late_and_duplicate,mixed,standard,opus,2,yes,yes,2
+late_and_duplicate,mixed,standard,opus,3,yes,yes,2
+late_and_new_status,mixed,standard,sonnet,1,yes,yes,2
+late_and_new_status,mixed,standard,sonnet,2,yes,yes,2
+late_and_new_status,mixed,standard,sonnet,3,yes,yes,2
+late_and_new_status,mixed,standard,haiku,1,yes,yes,2
+late_and_new_status,mixed,standard,haiku,2,yes,no,2
+late_and_new_status,mixed,standard,haiku,3,yes,yes,2
+late_and_new_status,mixed,standard,opus,1,yes,yes,2
+late_and_new_status,mixed,standard,opus,2,yes,yes,2
+late_and_new_status,mixed,standard,opus,3,yes,yes,2
+late_and_timezone,mixed,standard,sonnet,1,no,no,1
+late_and_timezone,mixed,standard,sonnet,2,yes,yes,2
+late_and_timezone,mixed,standard,sonnet,3,yes,yes,2
+late_and_timezone,mixed,standard,haiku,1,no,no,1
+late_and_timezone,mixed,standard,haiku,2,no,no,1
+late_and_timezone,mixed,standard,haiku,3,no,no,1
+late_and_timezone,mixed,standard,opus,1,yes,yes,2
+late_and_timezone,mixed,standard,opus,2,yes,yes,2
+late_and_timezone,mixed,standard,opus,3,yes,yes,2
+late_orders,late data,standard,sonnet,1,yes,yes,1
+late_orders,late data,standard,sonnet,2,yes,yes,1
+late_orders,late data,standard,sonnet,3,yes,yes,1
+late_orders,late data,standard,haiku,1,yes,yes,1
+late_orders,late data,standard,haiku,2,yes,yes,1
+late_orders,late data,standard,haiku,3,yes,yes,1
+late_orders,late data,standard,opus,1,yes,yes,1
+late_orders,late data,standard,opus,2,yes,yes,1
+late_orders,late data,standard,opus,3,yes,yes,1
+late_payments,late data,standard,sonnet,1,yes,yes,1
+late_payments,late data,standard,sonnet,2,yes,yes,1
+late_payments,late data,standard,sonnet,3,yes,yes,1
+late_payments,late data,standard,haiku,1,yes,yes,1
+late_payments,late data,standard,haiku,2,yes,yes,1
+late_payments,late data,standard,haiku,3,yes,yes,1
+late_payments,late data,standard,opus,1,yes,yes,1
+late_payments,late data,standard,opus,2,yes,yes,1
+late_payments,late data,standard,opus,3,yes,yes,1
+null_order_dates,null flood,standard,sonnet,1,yes,yes,1
+null_order_dates,null flood,standard,sonnet,2,yes,yes,1
+null_order_dates,null flood,standard,sonnet,3,yes,yes,1
+null_order_dates,null flood,standard,haiku,1,yes,yes,1
+null_order_dates,null flood,standard,haiku,2,yes,yes,1
+null_order_dates,null flood,standard,haiku,3,yes,yes,1
+null_order_dates,null flood,standard,opus,1,yes,yes,1
+null_order_dates,null flood,standard,opus,2,yes,yes,1
+null_order_dates,null flood,standard,opus,3,yes,yes,1
+null_payment_amounts,null flood,standard,sonnet,1,yes,yes,1
+null_payment_amounts,null flood,standard,sonnet,2,yes,yes,1
+null_payment_amounts,null flood,standard,sonnet,3,yes,yes,1
+null_payment_amounts,null flood,standard,haiku,1,yes,yes,1
+null_payment_amounts,null flood,standard,haiku,2,yes,no,1
+null_payment_amounts,null flood,standard,haiku,3,yes,yes,1
+null_payment_amounts,null flood,standard,opus,1,yes,yes,1
+null_payment_amounts,null flood,standard,opus,2,yes,yes,1
+null_payment_amounts,null flood,standard,opus,3,yes,yes,1
+payment_method_renamed,schema drift,standard,sonnet,1,yes,yes,1
+payment_method_renamed,schema drift,standard,sonnet,2,yes,yes,1
+payment_method_renamed,schema drift,standard,sonnet,3,yes,yes,1
+payment_method_renamed,schema drift,standard,haiku,1,yes,yes,1
+payment_method_renamed,schema drift,standard,haiku,2,yes,yes,1
+payment_method_renamed,schema drift,standard,haiku,3,yes,yes,1
+payment_method_renamed,schema drift,standard,opus,1,yes,yes,1
+payment_method_renamed,schema drift,standard,opus,2,yes,yes,1
+payment_method_renamed,schema drift,standard,opus,3,yes,yes,1
+payment_methods_fanout,join fan-out,standard,sonnet,1,yes,yes,1
+payment_methods_fanout,join fan-out,standard,sonnet,2,yes,yes,1
+payment_methods_fanout,join fan-out,standard,sonnet,3,yes,yes,1
+payment_methods_fanout,join fan-out,standard,haiku,1,yes,yes,1
+payment_methods_fanout,join fan-out,standard,haiku,2,yes,yes,1
+payment_methods_fanout,join fan-out,standard,haiku,3,yes,yes,1
+payment_methods_fanout,join fan-out,standard,opus,1,yes,yes,1
+payment_methods_fanout,join fan-out,standard,opus,2,yes,yes,1
+payment_methods_fanout,join fan-out,standard,opus,3,yes,yes,1
+processor_history,join fan-out,standard,sonnet,1,yes,yes,1
+processor_history,join fan-out,standard,sonnet,2,yes,yes,1
+processor_history,join fan-out,standard,sonnet,3,yes,yes,1
+processor_history,join fan-out,standard,haiku,1,yes,yes,1
+processor_history,join fan-out,standard,haiku,2,yes,yes,1
+processor_history,join fan-out,standard,haiku,3,yes,yes,1
+processor_history,join fan-out,standard,opus,1,yes,yes,1
+processor_history,join fan-out,standard,opus,2,yes,yes,1
+processor_history,join fan-out,standard,opus,3,yes,yes,1
+region_fanout,join fan-out,standard,sonnet,1,yes,yes,1
+region_fanout,join fan-out,standard,sonnet,2,yes,yes,1
+region_fanout,join fan-out,standard,sonnet,3,yes,yes,1
+region_fanout,join fan-out,standard,haiku,1,yes,yes,1
+region_fanout,join fan-out,standard,haiku,2,yes,yes,1
+region_fanout,join fan-out,standard,haiku,3,yes,yes,1
+region_fanout,join fan-out,standard,opus,1,yes,yes,1
+region_fanout,join fan-out,standard,opus,2,yes,yes,1
+region_fanout,join fan-out,standard,opus,3,yes,yes,1
+regions_fanout_history,join fan-out,standard,sonnet,1,yes,yes,1
+regions_fanout_history,join fan-out,standard,sonnet,2,yes,yes,1
+regions_fanout_history,join fan-out,standard,sonnet,3,yes,yes,1
+regions_fanout_history,join fan-out,standard,haiku,1,yes,yes,1
+regions_fanout_history,join fan-out,standard,haiku,2,yes,yes,1
+regions_fanout_history,join fan-out,standard,haiku,3,yes,yes,1
+regions_fanout_history,join fan-out,standard,opus,1,yes,yes,1
+regions_fanout_history,join fan-out,standard,opus,2,yes,yes,1
+regions_fanout_history,join fan-out,standard,opus,3,yes,yes,1
+rename_and_new_status,mixed,standard,sonnet,1,yes,yes,2
+rename_and_new_status,mixed,standard,sonnet,2,yes,yes,2
+rename_and_new_status,mixed,standard,sonnet,3,yes,yes,2
+rename_and_new_status,mixed,standard,haiku,1,no,no,1
+rename_and_new_status,mixed,standard,haiku,2,no,no,1
+rename_and_new_status,mixed,standard,haiku,3,no,no,1
+rename_and_new_status,mixed,standard,opus,1,yes,yes,2
+rename_and_new_status,mixed,standard,opus,2,yes,yes,2
+rename_and_new_status,mixed,standard,opus,3,yes,yes,2
+rename_and_utc,mixed,standard,sonnet,1,yes,no,2
+rename_and_utc,mixed,standard,sonnet,2,yes,no,2
+rename_and_utc,mixed,standard,sonnet,3,no,no,1
+rename_and_utc,mixed,standard,haiku,1,no,no,1
+rename_and_utc,mixed,standard,haiku,2,no,no,1
+rename_and_utc,mixed,standard,haiku,3,no,no,1
+rename_and_utc,mixed,standard,opus,1,no,no,1
+rename_and_utc,mixed,standard,opus,2,no,no,1
+rename_and_utc,mixed,standard,opus,3,no,no,1
+status_new_value,category change,standard,sonnet,1,yes,yes,1
+status_new_value,category change,standard,sonnet,2,yes,yes,1
+status_new_value,category change,standard,sonnet,3,yes,yes,1
+status_new_value,category change,standard,haiku,1,yes,yes,1
+status_new_value,category change,standard,haiku,2,yes,yes,1
+status_new_value,category change,standard,haiku,3,yes,yes,1
+status_new_value,category change,standard,opus,1,yes,yes,1
+status_new_value,category change,standard,opus,2,yes,yes,1
+status_new_value,category change,standard,opus,3,yes,yes,1
+status_renamed,schema drift,standard,sonnet,1,yes,yes,1
+status_renamed,schema drift,standard,sonnet,2,yes,yes,1
+status_renamed,schema drift,standard,sonnet,3,yes,yes,1
+status_renamed,schema drift,standard,haiku,1,yes,yes,1
+status_renamed,schema drift,standard,haiku,2,yes,yes,1
+status_renamed,schema drift,standard,haiku,3,yes,yes,1
+status_renamed,schema drift,standard,opus,1,yes,yes,1
+status_renamed,schema drift,standard,opus,2,yes,yes,1
+status_renamed,schema drift,standard,opus,3,yes,yes,1
+status_title_case,category change,standard,sonnet,1,yes,yes,1
+status_title_case,category change,standard,sonnet,2,yes,yes,1
+status_title_case,category change,standard,sonnet,3,yes,yes,1
+status_title_case,category change,standard,haiku,1,yes,yes,1
+status_title_case,category change,standard,haiku,2,yes,yes,1
+status_title_case,category change,standard,haiku,3,yes,yes,1
+status_title_case,category change,standard,opus,1,yes,yes,1
+status_title_case,category change,standard,opus,2,yes,yes,1
+status_title_case,category change,standard,opus,3,yes,yes,1
+transfers_in_micros,unit change,standard,sonnet,1,yes,yes,1
+transfers_in_micros,unit change,standard,sonnet,2,yes,yes,1
+transfers_in_micros,unit change,standard,sonnet,3,yes,yes,1
+transfers_in_micros,unit change,standard,haiku,1,yes,yes,1
+transfers_in_micros,unit change,standard,haiku,2,yes,yes,1
+transfers_in_micros,unit change,standard,haiku,3,yes,yes,1
+transfers_in_micros,unit change,standard,opus,1,yes,yes,1
+transfers_in_micros,unit change,standard,opus,2,yes,no,1
+transfers_in_micros,unit change,standard,opus,3,yes,yes,1
+units_and_rename,mixed,standard,sonnet,1,yes,yes,2
+units_and_rename,mixed,standard,sonnet,2,yes,yes,2
+units_and_rename,mixed,standard,sonnet,3,yes,yes,2
+units_and_rename,mixed,standard,haiku,1,no,no,1
+units_and_rename,mixed,standard,haiku,2,no,no,1
+units_and_rename,mixed,standard,haiku,3,no,no,1
+units_and_rename,mixed,standard,opus,1,yes,yes,2
+units_and_rename,mixed,standard,opus,2,yes,yes,2
+units_and_rename,mixed,standard,opus,3,yes,no,2
+utc_reexport,timezone shift,standard,sonnet,1,yes,yes,1
+utc_reexport,timezone shift,standard,sonnet,2,yes,yes,1
+utc_reexport,timezone shift,standard,sonnet,3,yes,yes,1
+utc_reexport,timezone shift,standard,haiku,1,yes,yes,1
+utc_reexport,timezone shift,standard,haiku,2,yes,yes,1
+utc_reexport,timezone shift,standard,haiku,3,yes,yes,1
+utc_reexport,timezone shift,standard,opus,1,yes,yes,1
+utc_reexport,timezone shift,standard,opus,2,yes,yes,1
+utc_reexport,timezone shift,standard,opus,3,yes,yes,1
+utc_switch,timezone shift,standard,sonnet,1,yes,no,1
+utc_switch,timezone shift,standard,sonnet,2,yes,no,1
+utc_switch,timezone shift,standard,sonnet,3,yes,no,1
+utc_switch,timezone shift,standard,haiku,1,yes,no,1
+utc_switch,timezone shift,standard,haiku,2,no,no,0
+utc_switch,timezone shift,standard,haiku,3,no,no,0
+utc_switch,timezone shift,standard,opus,1,yes,no,1
+utc_switch,timezone shift,standard,opus,2,yes,no,1
+utc_switch,timezone shift,standard,opus,3,yes,no,1
+utc_switch_blind,timezone shift,standard,sonnet,1,yes,no,1
+utc_switch_blind,timezone shift,standard,sonnet,2,no,no,0
+utc_switch_blind,timezone shift,standard,sonnet,3,no,no,0
+utc_switch_blind,timezone shift,standard,haiku,1,yes,no,1
+utc_switch_blind,timezone shift,standard,haiku,2,yes,no,1
+utc_switch_blind,timezone shift,standard,haiku,3,yes,no,1
+utc_switch_blind,timezone shift,standard,opus,1,yes,no,1
+utc_switch_blind,timezone shift,standard,opus,2,yes,no,1
+utc_switch_blind,timezone shift,standard,opus,3,no,no,0

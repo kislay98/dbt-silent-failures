@@ -1,0 +1,31 @@
+id,case,type,samples,model,run,root_cause,fix,defects_found
+01,fanout_and_late,mixed,standard,opus,1,no,no,1
+02,payment_methods_fanout,join fan-out,standard,sonnet,2,yes,yes,1
+03,units_and_rename,mixed,standard,haiku,3,no,no,1
+04,utc_reexport,timezone shift,standard,sonnet,2,yes,yes,1
+05,duplicates_and_units,mixed,standard,opus,2,yes,yes,2
+06,late_and_timezone,mixed,standard,opus,1,yes,yes,2
+07,utc_switch_blind,timezone shift,standard,haiku,3,yes,no,1
+08,rename_and_utc,mixed,standard,opus,3,no,no,1
+09,utc_switch_blind,timezone shift,standard,sonnet,2,no,no,0
+10,transfers_in_micros,unit change,standard,opus,3,yes,yes,1
+11,status_renamed,schema drift,standard,sonnet,1,yes,yes,1
+12,late_orders,late data,standard,haiku,3,yes,yes,1
+13,category_and_units,mixed,standard,sonnet,2,yes,yes,2
+14,duplicates_and_rename,mixed,standard,haiku,3,no,no,1
+15,fanout_and_late,mixed,standard,sonnet,3,yes,yes,2
+16,null_payment_amounts,null flood,standard,haiku,1,yes,yes,1
+17,duplicates_and_units,mixed,standard,haiku,3,yes,yes,2
+18,status_renamed,schema drift,standard,haiku,3,yes,yes,1
+19,category_and_units,mixed,standard,haiku,3,no,no,0
+20,payment_method_renamed,schema drift,standard,opus,2,yes,yes,1
+21,late_and_new_status,mixed,standard,opus,3,yes,yes,2
+22,rename_and_new_status,mixed,standard,haiku,3,no,no,1
+23,late_payments,late data,standard,sonnet,3,yes,yes,1
+24,processor_history,join fan-out,standard,opus,2,yes,yes,1
+25,region_fanout,join fan-out,standard,sonnet,3,yes,yes,1
+26,regions_fanout_history,join fan-out,standard,haiku,1,yes,yes,1
+27,duplicates_and_rename,mixed,standard,haiku,1,no,no,1
+28,processor_history,join fan-out,standard,haiku,1,yes,yes,1
+29,duplicates_and_units,mixed,standard,sonnet,1,yes,yes,2
+30,utc_switch_blind,timezone shift,standard,opus,1,yes,no,1

@@ -1,0 +1,31 @@
+id,case,type,samples,model,run,root_cause,fix,defects_found
+01,duplicate_orders,duplicate rows,curated,sonnet,1,yes,yes,1
+02,payment_method_renamed,schema drift,curated,opus,2,yes,yes,1
+03,late_and_timezone,mixed,curated,haiku,3,yes,yes,2
+04,duplicates_and_rename,mixed,curated,sonnet,2,no,no,1
+05,utc_switch_blind,timezone shift,curated,haiku,2,yes,no,1
+06,transfers_in_micros,unit change,curated,sonnet,1,yes,yes,1
+07,fanout_and_late,mixed,curated,haiku,3,yes,yes,2
+08,late_and_new_status,mixed,curated,haiku,3,yes,yes,2
+09,fanout_and_late,mixed,curated,sonnet,2,yes,no,2
+10,utc_switch,timezone shift,curated,opus,3,yes,no,1
+11,payment_methods_fanout,join fan-out,curated,opus,1,yes,yes,1
+12,units_and_rename,mixed,curated,sonnet,3,yes,yes,2
+13,duplicate_payments,duplicate rows,curated,sonnet,2,yes,yes,1
+14,status_title_case,category change,curated,haiku,3,yes,yes,1
+15,late_and_duplicate,mixed,curated,sonnet,3,yes,yes,2
+16,late_payments,late data,curated,opus,1,yes,yes,1
+17,utc_switch_blind,timezone shift,curated,sonnet,3,yes,no,1
+18,processor_history,join fan-out,curated,opus,3,yes,yes,1
+19,duplicate_payments,duplicate rows,curated,haiku,3,yes,yes,1
+20,payment_methods_fanout,join fan-out,curated,haiku,2,yes,yes,1
+21,null_payment_amounts,null flood,curated,haiku,3,yes,no,1
+22,rename_and_new_status,mixed,curated,haiku,3,no,no,1
+23,coupon_cents,unit change,curated,opus,3,yes,yes,1
+24,fanout_and_nulls,mixed,curated,sonnet,2,yes,yes,2
+25,fanout_and_nulls,mixed,curated,haiku,3,yes,yes,2
+26,duplicates_and_units,mixed,curated,haiku,1,no,no,1
+27,status_title_case,category change,curated,haiku,1,yes,yes,1
+28,regions_fanout_history,join fan-out,curated,opus,1,yes,yes,1
+29,join_drops_rows,null flood,curated,haiku,1,yes,yes,1
+30,fanout_and_late,mixed,curated,opus,1,yes,yes,2
