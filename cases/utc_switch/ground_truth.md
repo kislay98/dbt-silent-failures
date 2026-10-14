@@ -29,6 +29,8 @@ valid timestamps, unique ids and accepted statuses are untouched, and `daily_rev
 | average hour of day of `ordered_at`, orders from 1 March | 12.7 | 11.1 |
 | `sum(orders.amount)` | 1672.0 | 1672.0 |
 
+**Key number:** `select count(*) from orders where order_date = '2018-03-26'` is 3 clean and 5 broken (checked by `check_case.py`).
+
 **Correct fix:** restore the feed (`git checkout jaffle_shop/seeds/raw_orders.csv`), or convert the shifted rows back
 to local time before deriving the date in `stg_orders`: `ordered_at + interval 5 hour + interval 30 minute` for rows
 from 2018-03-01, or convert every row to the shop's zone explicitly once the feed is known to be UTC. A guard that

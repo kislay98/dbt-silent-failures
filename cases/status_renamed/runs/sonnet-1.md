@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 15 s | USD 0.054 | 2026-10-22
+
 ## 1. Root cause
 
 **File:** `models/staging/stg_orders.sql`, reading the `raw_orders` seed.

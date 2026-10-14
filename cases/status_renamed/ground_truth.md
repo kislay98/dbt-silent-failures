@@ -33,6 +33,8 @@ Affected customers (clean to broken): 3 (65 to 46), 8 (45 to 19), 12 (4 to 0), 1
 25 (24 to 22), 30 (28 to 0), 36 (28 to 0), 53 (39 to 23), 57 (26 to 12), 63 (16 to 0), 69 (32 to 13), 70 (29 to 0),
 79 (27 to 4), 93 (2 to 0). Total 279.00 = 1103.00 - 824.00.
 
+**Key number:** `select round(sum(completed_lifetime_value), 2) from customers` is 1103.0 clean and 824.0 broken (checked by `check_case.py`).
+
 **Correct fix:** read the new column in `stg_orders` (`coalesce(order_status, status) as status`, or `order_status`
 alone since it is backfilled), or restore the seed (`git checkout jaffle_shop/seeds/raw_orders.csv`). Guards that
 would have caught it: a `not_null` test on `stg_orders.status`, or a singular test that fails when any order from the

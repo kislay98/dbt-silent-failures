@@ -2,8 +2,8 @@
 
 **Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
 isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
-(seeds hidden). Sonnet is `claude-sonnet-5-5` (10 s, USD 0.05), response in `response.md`. Haiku is `claude-haiku-5-5`
-(23 s, USD 0.004), response in `response_haiku.md`.
+(seeds hidden). Sonnet is `claude-sonnet-5-5` (10 s, USD 0.05), response in `runs/sonnet-1.md`. Haiku is `claude-haiku-5-5`
+(23 s, USD 0.004), response in `runs/haiku-1.md`.
 
 ## Claude Sonnet
 
@@ -34,3 +34,16 @@ clean data. Its reconciliation test (subquery form) fails with 1 row on the brok
 
 **Earlier runs (default config, confounded by the ponytail hook, 17 to 22 Oct):** Sonnet pass and pass; Haiku not run.
 Hiding the seed did not slow either model: the log prints the seed row count. The next fan-out case strips it.
+
+## Repeat runs
+
+Two more runs per model, same command, prompt assembled by `check_case.py` from the week 3 working tree.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-2 | yes | yes | Dedupe inside the `regions` CTE. |
+| sonnet-3 | yes | yes | Staging model with a tie-breaker. |
+| haiku-2 | yes | yes | Dedupe inside the CTE; this run predates the project stamp in the run header. |
+| haiku-3 | yes | yes | Same. |
+
+Same fix shapes as the verified runs.

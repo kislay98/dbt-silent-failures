@@ -33,6 +33,8 @@ Doubled customers (region, lifetime payments): 1 (ACT, 33.00), 12 (WA, 4.00), 25
 46 (QLD, 64.00), 59 (WA, 1.00), 76 (NSW, 2.00), 90 (QLD, 43.00). Total 174.00 = 1846.00 - 1672.00. Per region:
 ACT +33, NSW +2, QLD +107, SA 0, TAS +24, VIC +3, WA +5.
 
+**Key number:** `select round(sum(revenue), 2) from region_revenue` is 1672.0 clean and 1846.0 broken (checked by `check_case.py`).
+
 **Correct fix:** remove the 8 appended rows (`git checkout jaffle_shop/seeds/raw_customer_regions.csv`), or make the
 regions CTE in `region_revenue` keep one row per customer (latest `updated_at`, e.g.
 `qualify row_number() over (partition by customer_id order by updated_at desc) = 1`). A guard that would have caught it:

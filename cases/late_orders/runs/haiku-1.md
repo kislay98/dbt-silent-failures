@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 30 s | USD 0.005 | 2026-10-22
+
 ## 1. Root cause
 
 The problem is in `jaffle_shop/models/daily_revenue.sql`, in the `is_incremental()` filter:

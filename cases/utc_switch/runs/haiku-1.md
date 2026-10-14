@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 43 s | USD 0.006 | 2026-10-22
+
 ## 1. Root cause
 
 **Files:** `models/staging/stg_orders.sql` (the `cast(ordered_at as date)` line), fed by the `raw_orders` seed. The bad data is in `raw_orders.ordered_at`.

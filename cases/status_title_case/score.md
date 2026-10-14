@@ -2,8 +2,8 @@
 
 **Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
 isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
-(seeds hidden). Sonnet is `claude-sonnet-5-5` (16 s, USD 0.05), response in `response.md`. Haiku is `claude-haiku-5-5`
-(19 s, USD 0.004), response in `response_haiku.md`.
+(seeds hidden). Sonnet is `claude-sonnet-5-5` (16 s, USD 0.05), response in `runs/sonnet-1.md`. Haiku is `claude-haiku-5-5`
+(19 s, USD 0.004), response in `runs/haiku-1.md`.
 
 ## Claude Sonnet
 
@@ -28,3 +28,14 @@ tests. Its reconciliation test fails with 1 row on the broken data, passes after
 **Verdict:** pass on both root cause and fix.
 
 **Earlier runs (default config, confounded by the ponytail hook, 17 to 22 Oct):** Sonnet pass and pass; Haiku not run.
+
+## Repeat runs
+
+Two more runs per model, same command, prompt assembled by `check_case.py` from the week 3 working tree.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-2 | yes | yes | `lower(trim(status))`, narrowed lists, reconciliation on `lower(status)`. |
+| sonnet-3 | yes | yes | Same fix; its reconciliation test filters `orders` with the case-sensitive comparison, so it passes on the broken data (checked) and its claim that it would have fired is wrong. |
+| haiku-2 | yes | yes | `lower(status)`, narrowed lists, reconciliation on `lower(status)`. |
+| haiku-3 | yes | yes | Same. |

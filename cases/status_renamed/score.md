@@ -2,8 +2,8 @@
 
 **Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
 isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
-(seeds hidden). Sonnet is `claude-sonnet-5-5` (15 s, USD 0.05), response in `response.md`. Haiku is `claude-haiku-5-5`
-(20 s, USD 0.004), response in `response_haiku.md`.
+(seeds hidden). Sonnet is `claude-sonnet-5-5` (15 s, USD 0.05), response in `runs/sonnet-1.md`. Haiku is `claude-haiku-5-5`
+(20 s, USD 0.004), response in `runs/haiku-1.md`.
 
 ## Claude Sonnet
 
@@ -30,3 +30,14 @@ tests fail with 43 rows each on the broken data and pass after the fix.
 **Verdict:** pass on both root cause and fix.
 
 **Earlier runs (default config, confounded by the ponytail hook, 17 to 22 Oct):** Sonnet pass and pass; Haiku not run.
+
+## Repeat runs
+
+Two more runs per model, same command, prompt assembled by `check_case.py` from the week 3 working tree.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-2 | yes | yes | `coalesce`; its drift test (`status` NULL and `order_status` not NULL) fails with 43 rows on the broken data, checked. |
+| sonnet-3 | yes | yes | `coalesce`; says itself that a customers-against-orders reconciliation would not catch this. |
+| haiku-2 | yes | yes | `coalesce` after a disagreement check. |
+| haiku-3 | yes | yes | `order_status as status`, which works because the column is backfilled. |

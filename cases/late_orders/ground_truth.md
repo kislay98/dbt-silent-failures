@@ -29,6 +29,8 @@ orders it summarises, and the incremental filter is exactly what the model says 
 | `customers.number_of_orders`, `customer_lifetime_value` for customer 60 | NULL, NULL | 1, 20.0 |
 | `sum(region_revenue.revenue)` | 1672.0 | 1737.0 |
 
+**Key number:** `select round(sum(amount), 2) from orders where order_date between '2018-02-01' and '2018-02-28'` is 415.0 clean and 480.0 broken (checked by `check_case.py`).
+
 **Correct fix:** the data is right, the model is stale. `dbt build --full-refresh --select daily_revenue` brings in the
 six days, and the model needs a strategy that survives late rows: rebuild every day present in the new source rows
 (`where order_date in (select distinct order_date from new orders)`), key the incremental filter on a load timestamp

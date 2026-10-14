@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 32 s | USD 0.006 | 2026-10-22
+
 ## 1. Root cause
 
 **`jaffle_shop/models/staging/stg_payments.sql` divides every payment by 100, but the gift card rows in `jaffle_shop/seeds/raw_payments.csv` are already in dollars.**

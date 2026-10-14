@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 23 s | USD 0.004 | 2026-10-22
+
 ## 1. Root cause
 
 **`jaffle_shop/models/region_revenue.sql`** joins `raw_customer_regions` without checking that it has one row per customer. The seed has 108 rows for the 100 customers, so some customers have two or more region rows. Each of those customers' payments is duplicated in the join, and `sum(payments.amount)` counts them again.

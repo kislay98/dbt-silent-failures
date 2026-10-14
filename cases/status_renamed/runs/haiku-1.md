@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 20 s | USD 0.004 | 2026-10-22
+
 ## 1. Root cause
 
 **`jaffle_shop/models/staging/stg_orders.sql`** reads only `status` from `raw_orders`. The raw table also has an `order_status` column, which nothing references. For a subset of orders the source populates `order_status` and leaves `status` NULL, so those orders reach `orders` and `customers` with a NULL status.

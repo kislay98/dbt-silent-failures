@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 22 s | USD 0.078 | 2026-10-22
+
 ## 1. Root cause
 
 `models/staging/stg_payments.sql` divides every payment by 100:

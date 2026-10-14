@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 26 s | USD 0.071 | 2026-10-22
+
 ## 1. Root cause
 
 The bug is in the raw data, not in the SQL. `seeds/raw_orders.csv` (loaded as `raw_orders.ordered_at`, a naive `TIMESTAMP`) mixes two time zones:

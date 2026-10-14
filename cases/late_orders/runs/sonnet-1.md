@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 23 s | USD 0.063 | 2026-10-22
+
 ## 1. Root cause
 
 **`models/daily_revenue.sql`**: the incremental filter is anchored to the wrong thing.

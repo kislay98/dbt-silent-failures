@@ -2,8 +2,8 @@
 
 **Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
 isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
-(seeds included, 28-test project). Sonnet is `claude-sonnet-5-5` (22 s, USD 0.08), response in `response.md`. Haiku is `claude-haiku-5-5`
-(32 s, USD 0.006), response in `response_haiku.md`.
+(seeds included, 28-test project). Sonnet is `claude-sonnet-5-5` (22 s, USD 0.08), response in `runs/sonnet-1.md`. Haiku is `claude-haiku-5-5`
+(32 s, USD 0.006), response in `runs/haiku-1.md`.
 
 ## Claude Sonnet
 
@@ -33,3 +33,16 @@ with 1 row on the broken data and passes after the fix.
 
 **Earlier runs (default config, confounded by the ponytail hook, 17 to 22 Oct):** Sonnet pass and pass; Haiku pass and
 pass. No verdict changed; the models now split on where to fix (model or seed), and both are correct for this data.
+
+## Repeat runs
+
+Two more runs per model, same command, prompt assembled by `check_case.py` from the week 3 working tree.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-2 | yes | yes | Same 12 rows and fix; proposes per-method control totals (411, 185, 871, 205) as a seed. |
+| sonnet-3 | yes | yes | Same; unit test plus control totals. |
+| haiku-2 | yes | yes | Same; order 58 at 24.00 right. |
+| haiku-3 | yes | yes | Same; unit test plus a per-order provider statement. |
+
+The per-method control-total test is the same shape as the one verified for haiku-1 and fails on the broken data.

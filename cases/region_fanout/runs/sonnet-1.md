@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 10 s | USD 0.048 | 2026-10-22
+
 **1. Root cause**
 
 `raw_customer_regions` (the seed behind `models/region_revenue.sql`) has 108 rows for 100 customers. It has an `updated_at` column, so it is a history/feed with more than one row per customer: 8 customers have two region rows, probably after moving region. The seed's only tests are `not_null` on `customer_id` and `region`, so the duplicates pass.

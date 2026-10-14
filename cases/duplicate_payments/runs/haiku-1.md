@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 28 s | USD 0.006 | 2026-10-22
+
 ## 1. Root cause
 
 The bug is in the raw data, not the SQL. `seeds/raw_payments.csv` contains 12 duplicate payment rows, ids 114–125, appended after id 113. Each one repeats an existing row's `order_id`, `payment_method`, and `amount`, but has a new `id`:

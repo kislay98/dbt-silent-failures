@@ -2,8 +2,8 @@
 
 **Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
 isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
-(seeds hidden). Sonnet is `claude-sonnet-5-5` (23 s, USD 0.06), response in `response.md`. Haiku is `claude-haiku-5-5`
-(30 s, USD 0.005), response in `response_haiku.md`.
+(seeds hidden). Sonnet is `claude-sonnet-5-5` (23 s, USD 0.06), response in `runs/sonnet-1.md`. Haiku is `claude-haiku-5-5`
+(30 s, USD 0.005), response in `runs/haiku-1.md`.
 
 ## Claude Sonnet
 
@@ -29,3 +29,14 @@ reconciliation test fails with 6 rows on the broken data, passes after the fix a
 **Verdict:** pass on both root cause and fix.
 
 **Earlier runs (default config, confounded by the ponytail hook, 17 to 22 Oct):** Sonnet pass and pass; Haiku not run.
+
+## Repeat runs
+
+Two more runs per model, same command, prompt assembled by `check_case.py` from the week 3 working tree.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-2 | yes | yes | Full refresh then table. |
+| sonnet-3 | yes | yes | Same. |
+| haiku-2 | yes | yes | Same; notes the model's comment describes the wrong mechanism. |
+| haiku-3 | yes | yes | Same. |

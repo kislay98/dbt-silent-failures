@@ -2,8 +2,8 @@
 
 **Runs:** `claude -p --setting-sources "" --model sonnet --tools "" --output-format json` and the same with `--model haiku` (Claude Code 2.1.296),
 isolated from this machine's hooks and global instructions, all tools disabled, one turn each, prompt = `prompt.md`
-(seeds hidden). Sonnet is `claude-sonnet-5-5` (26 s, USD 0.07), response in `response.md`. Haiku is `claude-haiku-5-5`
-(43 s, USD 0.006), response in `response_haiku.md`.
+(seeds hidden). Sonnet is `claude-sonnet-5-5` (26 s, USD 0.07), response in `runs/sonnet-1.md`. Haiku is `claude-haiku-5-5`
+(43 s, USD 0.006), response in `runs/haiku-1.md`.
 
 ## Claude Sonnet
 
@@ -39,3 +39,16 @@ clean data; its unit test was not run.
 offset as steady state, "the warehouse holds UTC", and its fix moved ten January and February orders a day forward);
 Haiku not run. This is the one verdict that moved on the isolated re-run. One sample per run, so the persona cannot be
 told from sampling noise; week 3 runs each case three times.
+
+## Repeat runs
+
+Two more runs per model, same command, prompt assembled by `check_case.py` from the week 3 working tree.
+
+| Run | Root cause | Fix | Notes |
+|---|---|---|---|
+| sonnet-2 | yes | partly | Mixed conventions, switch at about order 73; `case` on an order-id var: every date right, 16 timestamps still shifted. |
+| sonnet-3 | yes | partly | Same, with a unit test pinning order 73. |
+| haiku-2 | yes | partly | Switch around 15 March; `case` on the timestamp: same partial result. |
+| haiku-3 | yes | partly | Mixed conventions; normalise the pre-cut-over rows at the source then convert; the 15 March boundary gives the same partial result. |
+
+All six runs now place the switch; none can place it before 15 March from the prompt, so every fix leaves the 1 to 14 March times of day 5h30 early while every `order_date` comes out right.

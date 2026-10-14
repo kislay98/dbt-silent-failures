@@ -1,3 +1,5 @@
+claude-haiku-5-5 | claude -p --setting-sources "" --model haiku --tools "" --output-format json | 19 s | USD 0.004 | 2026-10-22
+
 ## 1. Root cause
 
 The bug is a case mismatch in the raw order data, and the `customers` model is where it becomes wrong revenue.

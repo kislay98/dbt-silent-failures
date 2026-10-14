@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 16 s | USD 0.054 | 2026-10-22
+
 ## 1. Root cause
 
 `raw_orders` (the `raw_orders` seed) has inconsistent casing in `status`. Some rows are `Completed`, `Placed`, `Shipped` and `Return_pending`, mostly for Feb and Mar 2018. Others are lowercase.

@@ -22,6 +22,8 @@ Nothing checks one payment per order+method, or that amounts reconcile to an ext
 | `customers.customer_lifetime_value` for customer 1 | 33.0 | 43.0 |
 | `count(*) from stg_payments` | 113 | 125 |
 
+**Key number:** `select round(sum(amount), 2) from orders` is 1672.0 clean and 1852.0 broken (checked by `check_case.py`).
+
 **Correct fix:** remove the 12 appended rows (`git checkout jaffle_shop/seeds/raw_payments.csv`), or dedupe
 in `stg_payments` on (`order_id`, `payment_method`, `amount`). A guard that would have caught it: a `unique`
 test on a `dbt_utils.generate_surrogate_key(['order_id','payment_method'])`-style column in `stg_payments`,

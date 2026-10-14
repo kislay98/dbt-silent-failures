@@ -30,6 +30,8 @@ to a provider statement.
 
 Affected orders: 9, 19, 23, 43, 44, 58, 59, 62, 80, 87, 93, 96. Affected customers: 11, 22, 30, 31, 46, 53, 54, 57, 66, 90.
 
+**Key number:** `select round(sum(amount), 2) from orders` is 1672.0 clean and 1469.05 broken (checked by `check_case.py`).
+
 **Correct fix:** restore the seed (`git checkout jaffle_shop/seeds/raw_payments.csv`), or at the source fix the
 feed to send cents again. A model fix that multiplies `gift_card` rows by 100 in `stg_payments` also makes
 the output correct, but hard-codes the provider's mistake into the pipeline. A guard that would have caught it:

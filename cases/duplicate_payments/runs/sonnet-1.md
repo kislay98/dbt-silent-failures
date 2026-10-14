@@ -1,3 +1,5 @@
+claude-sonnet-5-5 | claude -p --setting-sources "" --model sonnet --tools "" --output-format json | 17 s | USD 0.074 | 2026-10-22
+
 ## 1. Root cause
 
 `seeds/raw_payments.csv` has 12 duplicated payments appended at the end (ids 114-125). Each one repeats an earlier payment for the same order, method and amount under a new `id`.

@@ -32,6 +32,8 @@ test change came with a model change.
 Affected customers: 3, 6, 8, 12, 13, 18, 19, 22, 25, 27, 30, 31, 34, 35, 36, 50, 51, 53, 54, 57, 63, 66, 69, 70, 71,
 79, 92, 93. Total 499.00 = 1103.00 - 604.00.
 
+**Key number:** `select round(sum(completed_lifetime_value), 2) from customers` is 1103.0 clean and 604.0 broken (checked by `check_case.py`).
+
 **Correct fix:** normalise in staging (`lower(status) as status` in `stg_orders`) and put both `accepted_values` lists
 back to the five lower-case values, or restore the seed and both schema files (`git checkout ...`). The guard existed:
 the original `accepted_values` test fired, and widening it was the failure. What would have caught the widening is a
