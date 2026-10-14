@@ -4,3 +4,4 @@ jaffle_shop/logs/
 jaffle_shop/*.duckdb
 jaffle_shop/.user.yml
 __pycache__/
+.idea/
