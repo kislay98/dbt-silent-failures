@@ -1,45 +1,88 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="880" height="360" viewBox="0 0 880 360" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="12">
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="618" viewBox="0 0 880 618" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="12">
 <style>svg{background:#fcfcfb}.ink{fill:#0b0b0b}.muted{fill:#52514e}.grid{stroke:#e5e4df}.axis{stroke:#b5b4ad}@media (prefers-color-scheme: dark){svg{background:#1a1a19}.ink{fill:#f0efec}.muted{fill:#c3c2b7}.grid{stroke:#34332f}.axis{stroke:#6b6a63}}</style>
-<text x="56" y="20" class="ink" font-size="14" font-weight="600">Silent failures found and fixed, by failure type and model</text>
-<text x="56" y="36" class="muted">Share of runs where the model named the root cause and its fix made the output correct</text>
-<line x1="56" x2="864" y1="296.0" y2="296.0" class="axis" stroke-width="1"/>
-<text x="50" y="300.0" class="muted" text-anchor="end">0%</text>
-<line x1="56" x2="864" y1="170.0" y2="170.0" class="grid" stroke-width="1"/>
-<text x="50" y="174.0" class="muted" text-anchor="end">50%</text>
-<line x1="56" x2="864" y1="44.0" y2="44.0" class="grid" stroke-width="1"/>
-<text x="50" y="48.0" class="muted" text-anchor="end">100%</text>
-<path d="M77.9,296.0 V48.0 Q77.9,44.0 81.9,44.0 H95.9 Q99.9,44.0 99.9,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, duplicate rows: 3 of 3 runs</title></path>
-<path d="M101.9,296.0 V48.0 Q101.9,44.0 105.9,44.0 H119.9 Q123.9,44.0 123.9,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, duplicate rows: 3 of 3 runs</title></path>
-<text x="100.9" y="314" class="ink" text-anchor="middle">duplicate rows</text>
-<path d="M167.7,296.0 V48.0 Q167.7,44.0 171.7,44.0 H185.7 Q189.7,44.0 189.7,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, join fan-out: 6 of 6 runs</title></path>
-<path d="M191.7,296.0 V48.0 Q191.7,44.0 195.7,44.0 H209.7 Q213.7,44.0 213.7,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, join fan-out: 6 of 6 runs</title></path>
-<text x="190.7" y="314" class="ink" text-anchor="middle">join fan-out</text>
-<path d="M257.4,296.0 V48.0 Q257.4,44.0 261.4,44.0 H275.4 Q279.4,44.0 279.4,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, schema drift: 3 of 3 runs</title></path>
-<path d="M281.4,296.0 V48.0 Q281.4,44.0 285.4,44.0 H299.4 Q303.4,44.0 303.4,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, schema drift: 3 of 3 runs</title></path>
-<text x="280.4" y="314" class="ink" text-anchor="middle">schema drift</text>
-<path d="M347.2,296.0 V48.0 Q347.2,44.0 351.2,44.0 H365.2 Q369.2,44.0 369.2,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, null flood: 3 of 3 runs</title></path>
-<path d="M371.2,296.0 V132.0 Q371.2,128.0 375.2,128.0 H389.2 Q393.2,128.0 393.2,132.0 V296.0 Z" fill="#eb6834"><title>Haiku, null flood: 2 of 3 runs</title></path>
-<text x="382.2" y="123.0" class="ink" text-anchor="middle">2/3</text>
-<text x="370.2" y="314" class="ink" text-anchor="middle">null flood</text>
-<path d="M437.0,296.0 V296.0 Q437.0,296.0 437.0,296.0 H459.0 Q459.0,296.0 459.0,296.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, timezone shift: 0 of 6 runs</title></path>
-<text x="448.0" y="291.0" class="ink" text-anchor="middle">0/6</text>
-<path d="M461.0,296.0 V296.0 Q461.0,296.0 461.0,296.0 H483.0 Q483.0,296.0 483.0,296.0 V296.0 Z" fill="#eb6834"><title>Haiku, timezone shift: 0 of 6 runs</title></path>
-<text x="472.0" y="291.0" class="ink" text-anchor="middle">0/6</text>
-<text x="460.0" y="314" class="ink" text-anchor="middle">timezone shift</text>
-<path d="M526.8,296.0 V48.0 Q526.8,44.0 530.8,44.0 H544.8 Q548.8,44.0 548.8,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, late data: 3 of 3 runs</title></path>
-<path d="M550.8,296.0 V48.0 Q550.8,44.0 554.8,44.0 H568.8 Q572.8,44.0 572.8,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, late data: 3 of 3 runs</title></path>
-<text x="549.8" y="314" class="ink" text-anchor="middle">late data</text>
-<path d="M616.6,296.0 V48.0 Q616.6,44.0 620.6,44.0 H634.6 Q638.6,44.0 638.6,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, unit change: 3 of 3 runs</title></path>
-<path d="M640.6,296.0 V48.0 Q640.6,44.0 644.6,44.0 H658.6 Q662.6,44.0 662.6,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, unit change: 3 of 3 runs</title></path>
-<text x="639.6" y="314" class="ink" text-anchor="middle">unit change</text>
-<path d="M706.3,296.0 V48.0 Q706.3,44.0 710.3,44.0 H724.3 Q728.3,44.0 728.3,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, category change: 3 of 3 runs</title></path>
-<path d="M730.3,296.0 V48.0 Q730.3,44.0 734.3,44.0 H748.3 Q752.3,44.0 752.3,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, category change: 3 of 3 runs</title></path>
-<text x="729.3" y="314" class="ink" text-anchor="middle">category change</text>
-<path d="M796.1,296.0 V48.0 Q796.1,44.0 800.1,44.0 H814.1 Q818.1,44.0 818.1,48.0 V296.0 Z" fill="#2a78d6"><title>Sonnet, mixed: 3 of 3 runs</title></path>
-<path d="M820.1,296.0 V48.0 Q820.1,44.0 824.1,44.0 H838.1 Q842.1,44.0 842.1,48.0 V296.0 Z" fill="#eb6834"><title>Haiku, mixed: 3 of 3 runs</title></path>
-<text x="819.1" y="314" class="ink" text-anchor="middle">mixed</text>
-<rect x="56" y="338" width="12" height="12" rx="2" fill="#2a78d6"/>
-<text x="73" y="348" class="ink">Sonnet</text>
-<rect x="141" y="338" width="12" height="12" rx="2" fill="#eb6834"/>
-<text x="158" y="348" class="ink">Haiku</text>
-<text x="864" y="348" class="muted" text-anchor="end">66 runs, results.csv</text></svg>
+<text x="56" y="20" class="ink" font-size="14" font-weight="600">Silent failures by failure type and model</text>
+<text x="56" y="36" class="muted">Share of runs, three per model per case, scored yes or no on two questions</text>
+<text x="56" y="64"><tspan class="ink" font-weight="600">Root cause found</tspan><tspan class="muted">: the run names the change that broke the data</tspan></text>
+<line x1="56" x2="864" y1="266.0" y2="266.0" class="axis" stroke-width="1"/>
+<text x="50" y="270.0" class="muted" text-anchor="end">0%</text>
+<line x1="56" x2="864" y1="171.0" y2="171.0" class="grid" stroke-width="1"/>
+<text x="50" y="175.0" class="muted" text-anchor="end">50%</text>
+<line x1="56" x2="864" y1="76.0" y2="76.0" class="grid" stroke-width="1"/>
+<text x="50" y="80.0" class="muted" text-anchor="end">100%</text>
+<path d="M77.9,266.0 V80.0 Q77.9,76.0 81.9,76.0 H95.9 Q99.9,76.0 99.9,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, duplicate rows, root cause found: 6 of 6 runs</title></path>
+<path d="M101.9,266.0 V80.0 Q101.9,76.0 105.9,76.0 H119.9 Q123.9,76.0 123.9,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, duplicate rows, root cause found: 6 of 6 runs</title></path>
+<text x="100.9" y="284" class="ink" text-anchor="middle">duplicate rows</text>
+<path d="M167.7,266.0 V80.0 Q167.7,76.0 171.7,76.0 H185.7 Q189.7,76.0 189.7,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, join fan-out, root cause found: 6 of 6 runs</title></path>
+<path d="M191.7,266.0 V80.0 Q191.7,76.0 195.7,76.0 H209.7 Q213.7,76.0 213.7,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, join fan-out, root cause found: 6 of 6 runs</title></path>
+<text x="190.7" y="284" class="ink" text-anchor="middle">join fan-out</text>
+<path d="M257.4,266.0 V80.0 Q257.4,76.0 261.4,76.0 H275.4 Q279.4,76.0 279.4,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, schema drift, root cause found: 6 of 6 runs</title></path>
+<path d="M281.4,266.0 V80.0 Q281.4,76.0 285.4,76.0 H299.4 Q303.4,76.0 303.4,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, schema drift, root cause found: 6 of 6 runs</title></path>
+<text x="280.4" y="284" class="ink" text-anchor="middle">schema drift</text>
+<path d="M347.2,266.0 V80.0 Q347.2,76.0 351.2,76.0 H365.2 Q369.2,76.0 369.2,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, null flood, root cause found: 9 of 9 runs</title></path>
+<path d="M371.2,266.0 V101.1 Q371.2,97.1 375.2,97.1 H389.2 Q393.2,97.1 393.2,101.1 V266.0 Z" fill="#eb6834"><title>Haiku, null flood, root cause found: 8 of 9 runs</title></path>
+<text x="382.2" y="92.1" class="ink" text-anchor="middle">8/9</text>
+<text x="370.2" y="284" class="ink" text-anchor="middle">null flood</text>
+<path d="M437.0,266.0 V122.2 Q437.0,118.2 441.0,118.2 H455.0 Q459.0,118.2 459.0,122.2 V266.0 Z" fill="#2a78d6"><title>Sonnet, timezone shift, root cause found: 7 of 9 runs</title></path>
+<text x="448.0" y="113.2" class="ink" text-anchor="middle">7/9</text>
+<path d="M461.0,266.0 V101.1 Q461.0,97.1 465.0,97.1 H479.0 Q483.0,97.1 483.0,101.1 V266.0 Z" fill="#eb6834"><title>Haiku, timezone shift, root cause found: 8 of 9 runs</title></path>
+<text x="472.0" y="92.1" class="ink" text-anchor="middle">8/9</text>
+<text x="460.0" y="284" class="ink" text-anchor="middle">timezone shift</text>
+<path d="M526.8,266.0 V80.0 Q526.8,76.0 530.8,76.0 H544.8 Q548.8,76.0 548.8,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, late data, root cause found: 6 of 6 runs</title></path>
+<path d="M550.8,266.0 V80.0 Q550.8,76.0 554.8,76.0 H568.8 Q572.8,76.0 572.8,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, late data, root cause found: 6 of 6 runs</title></path>
+<text x="549.8" y="284" class="ink" text-anchor="middle">late data</text>
+<path d="M616.6,266.0 V80.0 Q616.6,76.0 620.6,76.0 H634.6 Q638.6,76.0 638.6,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, unit change, root cause found: 9 of 9 runs</title></path>
+<path d="M640.6,266.0 V122.2 Q640.6,118.2 644.6,118.2 H658.6 Q662.6,118.2 662.6,122.2 V266.0 Z" fill="#eb6834"><title>Haiku, unit change, root cause found: 7 of 9 runs</title></path>
+<text x="651.6" y="113.2" class="ink" text-anchor="middle">7/9</text>
+<text x="639.6" y="284" class="ink" text-anchor="middle">unit change</text>
+<path d="M706.3,266.0 V80.0 Q706.3,76.0 710.3,76.0 H724.3 Q728.3,76.0 728.3,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, category change, root cause found: 6 of 6 runs</title></path>
+<path d="M730.3,266.0 V80.0 Q730.3,76.0 734.3,76.0 H748.3 Q752.3,76.0 752.3,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, category change, root cause found: 6 of 6 runs</title></path>
+<text x="729.3" y="284" class="ink" text-anchor="middle">category change</text>
+<path d="M796.1,266.0 V80.0 Q796.1,76.0 800.1,76.0 H814.1 Q818.1,76.0 818.1,80.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, mixed, root cause found: 6 of 6 runs</title></path>
+<path d="M820.1,266.0 V175.0 Q820.1,171.0 824.1,171.0 H838.1 Q842.1,171.0 842.1,175.0 V266.0 Z" fill="#eb6834"><title>Haiku, mixed, root cause found: 3 of 6 runs</title></path>
+<text x="831.1" y="166.0" class="ink" text-anchor="middle">3/6</text>
+<text x="819.1" y="284" class="ink" text-anchor="middle">mixed</text>
+<text x="56" y="334"><tspan class="ink" font-weight="600">Complete fix</tspan><tspan class="muted">: the fix makes every affected value right, strict</tspan></text>
+<line x1="56" x2="864" y1="536.0" y2="536.0" class="axis" stroke-width="1"/>
+<text x="50" y="540.0" class="muted" text-anchor="end">0%</text>
+<line x1="56" x2="864" y1="441.0" y2="441.0" class="grid" stroke-width="1"/>
+<text x="50" y="445.0" class="muted" text-anchor="end">50%</text>
+<line x1="56" x2="864" y1="346.0" y2="346.0" class="grid" stroke-width="1"/>
+<text x="50" y="350.0" class="muted" text-anchor="end">100%</text>
+<path d="M77.9,536.0 V350.0 Q77.9,346.0 81.9,346.0 H95.9 Q99.9,346.0 99.9,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, duplicate rows, complete fix: 6 of 6 runs</title></path>
+<path d="M101.9,536.0 V350.0 Q101.9,346.0 105.9,346.0 H119.9 Q123.9,346.0 123.9,350.0 V536.0 Z" fill="#eb6834"><title>Haiku, duplicate rows, complete fix: 6 of 6 runs</title></path>
+<text x="100.9" y="554" class="ink" text-anchor="middle">duplicate rows</text>
+<path d="M167.7,536.0 V350.0 Q167.7,346.0 171.7,346.0 H185.7 Q189.7,346.0 189.7,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, join fan-out, complete fix: 6 of 6 runs</title></path>
+<path d="M191.7,536.0 V350.0 Q191.7,346.0 195.7,346.0 H209.7 Q213.7,346.0 213.7,350.0 V536.0 Z" fill="#eb6834"><title>Haiku, join fan-out, complete fix: 6 of 6 runs</title></path>
+<text x="190.7" y="554" class="ink" text-anchor="middle">join fan-out</text>
+<path d="M257.4,536.0 V350.0 Q257.4,346.0 261.4,346.0 H275.4 Q279.4,346.0 279.4,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, schema drift, complete fix: 6 of 6 runs</title></path>
+<path d="M281.4,536.0 V350.0 Q281.4,346.0 285.4,346.0 H299.4 Q303.4,346.0 303.4,350.0 V536.0 Z" fill="#eb6834"><title>Haiku, schema drift, complete fix: 6 of 6 runs</title></path>
+<text x="280.4" y="554" class="ink" text-anchor="middle">schema drift</text>
+<path d="M347.2,536.0 V350.0 Q347.2,346.0 351.2,346.0 H365.2 Q369.2,346.0 369.2,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, null flood, complete fix: 9 of 9 runs</title></path>
+<path d="M371.2,536.0 V392.2 Q371.2,388.2 375.2,388.2 H389.2 Q393.2,388.2 393.2,392.2 V536.0 Z" fill="#eb6834"><title>Haiku, null flood, complete fix: 7 of 9 runs</title></path>
+<text x="382.2" y="383.2" class="ink" text-anchor="middle">7/9</text>
+<text x="370.2" y="554" class="ink" text-anchor="middle">null flood</text>
+<path d="M437.0,536.0 V476.7 Q437.0,472.7 441.0,472.7 H455.0 Q459.0,472.7 459.0,476.7 V536.0 Z" fill="#2a78d6"><title>Sonnet, timezone shift, complete fix: 3 of 9 runs</title></path>
+<text x="448.0" y="467.7" class="ink" text-anchor="middle">3/9</text>
+<path d="M461.0,536.0 V476.7 Q461.0,472.7 465.0,472.7 H479.0 Q483.0,472.7 483.0,476.7 V536.0 Z" fill="#eb6834"><title>Haiku, timezone shift, complete fix: 3 of 9 runs</title></path>
+<text x="472.0" y="467.7" class="ink" text-anchor="middle">3/9</text>
+<text x="460.0" y="554" class="ink" text-anchor="middle">timezone shift</text>
+<path d="M526.8,536.0 V350.0 Q526.8,346.0 530.8,346.0 H544.8 Q548.8,346.0 548.8,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, late data, complete fix: 6 of 6 runs</title></path>
+<path d="M550.8,536.0 V350.0 Q550.8,346.0 554.8,346.0 H568.8 Q572.8,346.0 572.8,350.0 V536.0 Z" fill="#eb6834"><title>Haiku, late data, complete fix: 6 of 6 runs</title></path>
+<text x="549.8" y="554" class="ink" text-anchor="middle">late data</text>
+<path d="M616.6,536.0 V350.0 Q616.6,346.0 620.6,346.0 H634.6 Q638.6,346.0 638.6,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, unit change, complete fix: 9 of 9 runs</title></path>
+<path d="M640.6,536.0 V371.1 Q640.6,367.1 644.6,367.1 H658.6 Q662.6,367.1 662.6,371.1 V536.0 Z" fill="#eb6834"><title>Haiku, unit change, complete fix: 8 of 9 runs</title></path>
+<text x="651.6" y="362.1" class="ink" text-anchor="middle">8/9</text>
+<text x="639.6" y="554" class="ink" text-anchor="middle">unit change</text>
+<path d="M706.3,536.0 V350.0 Q706.3,346.0 710.3,346.0 H724.3 Q728.3,346.0 728.3,350.0 V536.0 Z" fill="#2a78d6"><title>Sonnet, category change, complete fix: 6 of 6 runs</title></path>
+<path d="M730.3,536.0 V350.0 Q730.3,346.0 734.3,346.0 H748.3 Q752.3,346.0 752.3,350.0 V536.0 Z" fill="#eb6834"><title>Haiku, category change, complete fix: 6 of 6 runs</title></path>
+<text x="729.3" y="554" class="ink" text-anchor="middle">category change</text>
+<path d="M796.1,536.0 V413.3 Q796.1,409.3 800.1,409.3 H814.1 Q818.1,409.3 818.1,413.3 V536.0 Z" fill="#2a78d6"><title>Sonnet, mixed, complete fix: 4 of 6 runs</title></path>
+<text x="807.1" y="404.3" class="ink" text-anchor="middle">4/6</text>
+<path d="M820.1,536.0 V445.0 Q820.1,441.0 824.1,441.0 H838.1 Q842.1,441.0 842.1,445.0 V536.0 Z" fill="#eb6834"><title>Haiku, mixed, complete fix: 3 of 6 runs</title></path>
+<text x="831.1" y="436.0" class="ink" text-anchor="middle">3/6</text>
+<text x="819.1" y="554" class="ink" text-anchor="middle">mixed</text>
+<rect x="56" y="596" width="12" height="12" rx="2" fill="#2a78d6"/>
+<text x="73" y="606" class="ink">Sonnet</text>
+<rect x="141" y="596" width="12" height="12" rx="2" fill="#eb6834"/>
+<text x="158" y="606" class="ink">Haiku</text>
+<text x="864" y="606" class="muted" text-anchor="end">126 runs, results.csv</text></svg>
