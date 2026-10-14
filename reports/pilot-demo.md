@@ -26,8 +26,8 @@ the finished log.
      back ("only if a legitimate repeat payment of the same amount can't happen"), then not seen at all. Nine runs,
      nine misses, both ways; `score.md`, "What it says".
    - `cases/rename_and_utc/runs/sonnet-1.md` against `runs/standard/sonnet-1.md`: 8 of 9 fixed with order 73's
-     timestamp in the curated sample, 0 of 9 without it; both Sonnet runs that commit to UTC guess Sydney. The cost of a sample that does
-     not point.
+     timestamp in the curated sample, 0 of 9 without it (both Sonnet runs that commit to UTC guess Sydney), 6 of 9 with
+     it written into the complaint (`cases/rename_and_utc_v2/`). The cost of a sample that does not point.
    - `cases/rename_and_new_status/runs/standard/prompt.md`, the `raw_orders` rows: two `delivered` rows the hash
      happened to pick, and the case goes from 3 of 9 to 6 of 9. The luck of a sample that does not point.
 6. **Numbers and caveats (2 min).** `reports/pilot-summary.md`.

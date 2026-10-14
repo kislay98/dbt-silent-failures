@@ -19,7 +19,8 @@ SAMPLES = [("standard", "standard sample, the same queries on every case"),
 
 runs = defaultdict(list)  # (samples, type, model) -> rows
 for r in csv.DictReader((ROOT / "results.csv").open()):
-    runs[(r["samples"], r["type"], r["model"])].append(r)
+    if r.get("headline", "yes") == "yes":  # a case superseded by a v2 keeps its rows, out of the headline
+        runs[(r["samples"], r["type"], r["model"])].append(r)
 types = [t for t in TYPES if any(k[1] == t for k in runs)]
 panels = [(s, sl, q, t, sub) for q, t, sub in QUESTIONS for s, sl in SAMPLES if any(k[0] == s for k in runs)]
 n = sum(len(v) for v in runs.values())

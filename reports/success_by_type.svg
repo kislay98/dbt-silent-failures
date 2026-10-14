@@ -45,12 +45,12 @@
 <path d="M718.3,266.0 V80.0 Q718.3,76.0 722.3,76.0 H736.3 Q740.3,76.0 740.3,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, category change, root cause found, standard sample: 6 of 6 runs</title></path>
 <path d="M742.3,266.0 V80.0 Q742.3,76.0 746.3,76.0 H760.3 Q764.3,76.0 764.3,80.0 V266.0 Z" fill="#1baf7a"><title>Opus, category change, root cause found, standard sample: 6 of 6 runs</title></path>
 <text x="729.3" y="284" class="ink" text-anchor="middle">category change</text>
-<path d="M784.1,266.0 V114.5 Q784.1,110.5 788.1,110.5 H802.1 Q806.1,110.5 806.1,114.5 V266.0 Z" fill="#2a78d6"><title>Sonnet, mixed, root cause found, standard sample: 27 of 33 runs</title></path>
-<text x="795.1" y="105.5" class="ink" text-anchor="middle">27/33</text>
+<path d="M784.1,266.0 V108.8 Q784.1,104.8 788.1,104.8 H802.1 Q806.1,104.8 806.1,108.8 V266.0 Z" fill="#2a78d6"><title>Sonnet, mixed, root cause found, standard sample: 28 of 33 runs</title></path>
+<text x="795.1" y="99.8" class="ink" text-anchor="middle">28/33</text>
 <path d="M808.1,266.0 V189.4 Q808.1,185.4 812.1,185.4 H826.1 Q830.1,185.4 830.1,189.4 V266.0 Z" fill="#eb6834"><title>Haiku, mixed, root cause found, standard sample: 14 of 33 runs</title></path>
 <text x="819.1" y="180.4" class="ink" text-anchor="middle">14/33</text>
-<path d="M832.1,266.0 V120.3 Q832.1,116.3 836.1,116.3 H850.1 Q854.1,116.3 854.1,120.3 V266.0 Z" fill="#1baf7a"><title>Opus, mixed, root cause found, standard sample: 26 of 33 runs</title></path>
-<text x="843.1" y="111.3" class="ink" text-anchor="middle">26/33</text>
+<path d="M832.1,266.0 V103.0 Q832.1,99.0 836.1,99.0 H850.1 Q854.1,99.0 854.1,103.0 V266.0 Z" fill="#1baf7a"><title>Opus, mixed, root cause found, standard sample: 29 of 33 runs</title></path>
+<text x="843.1" y="94.0" class="ink" text-anchor="middle">29/33</text>
 <text x="819.1" y="284" class="ink" text-anchor="middle">mixed</text>
 <text x="56" y="334"><tspan class="ink" font-weight="600">Root cause found, curated sample</tspan><tspan class="muted">: the run names the change that broke the data; queries written per case, weeks 1 to 7</tspan></text>
 <line x1="56" x2="864" y1="536.0" y2="536.0" class="axis" stroke-width="1"/>
@@ -148,12 +148,12 @@
 <path d="M718.3,806.0 V620.0 Q718.3,616.0 722.3,616.0 H736.3 Q740.3,616.0 740.3,620.0 V806.0 Z" fill="#eb6834"><title>Haiku, category change, complete fix, standard sample: 6 of 6 runs</title></path>
 <path d="M742.3,806.0 V620.0 Q742.3,616.0 746.3,616.0 H760.3 Q764.3,616.0 764.3,620.0 V806.0 Z" fill="#1baf7a"><title>Opus, category change, complete fix, standard sample: 6 of 6 runs</title></path>
 <text x="729.3" y="824" class="ink" text-anchor="middle">category change</text>
-<path d="M784.1,806.0 V666.1 Q784.1,662.1 788.1,662.1 H802.1 Q806.1,662.1 806.1,666.1 V806.0 Z" fill="#2a78d6"><title>Sonnet, mixed, complete fix, standard sample: 25 of 33 runs</title></path>
-<text x="795.1" y="657.1" class="ink" text-anchor="middle">25/33</text>
+<path d="M784.1,806.0 V648.8 Q784.1,644.8 788.1,644.8 H802.1 Q806.1,644.8 806.1,648.8 V806.0 Z" fill="#2a78d6"><title>Sonnet, mixed, complete fix, standard sample: 28 of 33 runs</title></path>
+<text x="795.1" y="639.8" class="ink" text-anchor="middle">28/33</text>
 <path d="M808.1,806.0 V735.2 Q808.1,731.2 812.1,731.2 H826.1 Q830.1,731.2 830.1,735.2 V806.0 Z" fill="#eb6834"><title>Haiku, mixed, complete fix, standard sample: 13 of 33 runs</title></path>
 <text x="819.1" y="726.2" class="ink" text-anchor="middle">13/33</text>
-<path d="M832.1,806.0 V666.1 Q832.1,662.1 836.1,662.1 H850.1 Q854.1,662.1 854.1,666.1 V806.0 Z" fill="#1baf7a"><title>Opus, mixed, complete fix, standard sample: 25 of 33 runs</title></path>
-<text x="843.1" y="657.1" class="ink" text-anchor="middle">25/33</text>
+<path d="M832.1,806.0 V648.8 Q832.1,644.8 836.1,644.8 H850.1 Q854.1,644.8 854.1,648.8 V806.0 Z" fill="#1baf7a"><title>Opus, mixed, complete fix, standard sample: 28 of 33 runs</title></path>
+<text x="843.1" y="639.8" class="ink" text-anchor="middle">28/33</text>
 <text x="819.1" y="824" class="ink" text-anchor="middle">mixed</text>
 <text x="56" y="874"><tspan class="ink" font-weight="600">Complete fix, curated sample</tspan><tspan class="muted">: the fix makes every affected value right, strict; queries written per case, weeks 1 to 7</tspan></text>
 <line x1="56" x2="864" y1="1076.0" y2="1076.0" class="axis" stroke-width="1"/>
