@@ -29,10 +29,10 @@ final as (
 
     from payments
 
-    left join orders
+    join orders
         on payments.order_id = orders.order_id
 
-    left join regions
+    join regions
         on orders.customer_id = regions.customer_id
 
     group by regions.region
