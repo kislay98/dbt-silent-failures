@@ -36,3 +36,27 @@ the week 6 lookup extension, so the same project the other two models saw; verdi
 | opus-3 | yes | yes | Same, with an incremental variant that writes only changed days. |
 
 Opus: 3 of 3 found, 3 of 3 fixed.
+
+## Standard sample
+
+**Runs:** three per model, week 8, on the standard output sample (the same queries on every case: row counts, the raw
+column list, monthly totals of the output tables and ten rows of every table picked by hash); `runs/standard/prompt.md`
+is the frozen prompt every run answered and `runs/standard/` holds the responses. `claude -p --setting-sources ""
+--model <model> --tools "" --output-format json` (Claude Code 2.1.299), project ad0b16b. Same rubric; Defects is how
+many of the case's injected defects the run named as a cause.
+
+| Run | Root cause | Fix | Defects | Notes |
+|---|---|---|---|---|
+| sonnet-1 | yes | yes | 1 | Late February payments landing in `raw_payments` after those days left the three-day window in `daily_revenue.sql`; `dbt run --full-refresh -s daily_revenue` then `materialized='table'`; could not name the late payment rows without the seed and attaches a per-day diff query. |
+| sonnet-2 | yes | yes | 1 | Same; full refresh then table with the `is_incremental()` block removed, a `loaded_at` on `raw_payments` if it must stay incremental; reads the matching count as `sum(amount)` skipping nulls. |
+| sonnet-3 | yes | yes | 1 | Same, February orders first built while their payments were missing or partial; full refresh then drops the config to the project default table, with a 60-day lookback on `current_date` as the alternative at scale. |
+| haiku-1 | yes | yes | 1 | Same; drops the config block so the model inherits the project default table and a plain `dbt run` rebuilds February, no separate full refresh; flags the missing `unique` on `raw_customer_regions` and the `total_order_amount` doc drift as side notes. |
+| haiku-2 | yes | yes | 1 | Same, rules out the `amount / 100` division and `raw_payment_methods` fan-out; table plus one `--full-refresh`, and updates the `schema.yml` description. |
+| haiku-3 | yes | yes | 1 | Same, "a late or corrected payment for a February order" as the amount change on existing orders; drops the config to table and reruns, updates the `schema.yml` description; notes the seed tests missing from the log. |
+| opus-1 | yes | yes | 1 | Late `raw_payments` rows for February orders, pointing at sampled payment 120 on order 48 as a high id on a late-February order; `dbt build --select daily_revenue --full-refresh` then table, or a `loaded_at`-driven rebuild of touched days. |
+| opus-2 | yes | yes | 1 | Same, payment 120 on order 48 and 121 payments for 99 orders; full refresh then table, `loaded_at` at scale, updates the `schema.yml` description. |
+| opus-3 | yes | yes | 1 | Same, 121 payments against the stock 113 so the late rows are the highest ids; full refresh then table, with a `_loaded_at` filter rebuilding every day that received a payment since the last run as the incremental variant. |
+
+**Verification.** Every fix matches a shape in the Verification paragraph above.
+
+**What it says.** All nine standard runs found the late February payments and gave the same full-refresh-then-table fix as the nine curated runs, so this case is unchanged by the standard sample. The symptom text (same 27 orders on both sides, 485.00 against 415.00, settlement 485.00) and the monthly tables carried every run: the matching count with a 70.00 revenue gap told them only payment amounts had changed, and `customers` and `region_revenue` at 1742 told them `orders` was right. The standard sample shows only one of the eight late ids (payment 120 on order 48, where the curated sample showed 114 to 116 beside the originals); Opus used it and the 121 count against the stock 113, while Sonnet and Haiku said they could not see the late rows and attached confirm queries. None went wrong.

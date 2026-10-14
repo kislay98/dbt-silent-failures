@@ -27,3 +27,27 @@ restore `orders` and the day-by-day aggregate, because the rate did not change. 
 reconciliation fails with 1 row on the broken data and passes clean.
 
 **What it says.** Nine of nine on both counts. The `effective_from` column in the raw column list told every run what the lookup had become; eight picked the rate in force on the order date and one the latest row, and both give the clean output because the rate did not change.
+
+## Standard sample
+
+**Runs:** three per model, week 8, on the standard output sample (the same queries on every case: row counts, the raw
+column list, monthly totals of the output tables and ten rows of every table picked by hash); `runs/standard/prompt.md`
+is the frozen prompt every run answered and `runs/standard/` holds the responses. `claude -p --setting-sources ""
+--model <model> --tools "" --output-format json` (Claude Code 2.1.299), project ad0b16b. Same rubric; Defects is how
+many of the case's injected defects the run named as a cause.
+
+| Run | Root cause | Fix | Defects | Notes |
+|---|---|---|---|---|
+| sonnet-1 | yes | yes | 1 | Two `credit_card` rows in `raw_payment_methods`, `stripe` from 2018-01-01 and `adyen` from 2018-03-01, the join in `order_payments` ignores `effective_from` and counts every card payment twice; `lead()` validity windows and the rate in force on the order date, `dbt build --full-refresh`; per-order and total reconciliations against `stg_payments`, with a `(payment_method, effective_from)` combination test "as a minimum" that would not fire here. |
+| sonnet-2 | yes | yes | 1 | Same; `lead()` windows on the order date, `dbt build --full-refresh -s orders daily_revenue+`; a per-method reconciliation of `orders` against `stg_payments` and the same combination test. |
+| sonnet-3 | yes | yes | 1 | Same, reads April's 163 in `daily_revenue` as the doubled window against a correct 139; `lead()` windows with an inner join to `orders`, `dbt build --full-refresh -s orders+`; drafts an overlap test it then drops for a per-order reconciliation. |
+| haiku-1 | yes | yes | 1 | Same, with order 25's fee 1.38 worked back to two card rows; a `priced_payments` CTE with a DuckDB `asof left join` on the order date, one row per payment, `dbt build --select orders+ --full-refresh`; per-order reconciliation; says a `unique` test on the method alone would reject valid history and that the seed tests never ran (28 of 32). |
+| haiku-2 | yes | yes | 1 | Same; one lookup row per payment by `qualify row_number()` over `payment_id` on `effective_from` desc after a join on the order date, `dbt build --select orders+ --full-refresh`, with deleting the `stripe` row offered as a data-only alternative; per-method reconciliation. |
+| haiku-3 | yes | yes | 1 | Same; amounts summed from `payments` alone in `order_amounts` and fees by an `asof left join` on the order date in `order_fees`, `dbt run --select orders daily_revenue --full-refresh`; per-order reconciliation and a `(payment_method, effective_from)` singular test; reads the 28 of 32 tests as the seed tests not running. |
+| opus-1 | yes | yes | 1 | Same; order date joined onto `payments`, `lead()` windows and the effective-dated join, `dbt build --select orders+ --full-refresh`; per-order reconciliation and a singular grain test on `(payment_method, effective_from)`, noting a plain `unique` on the method "would now be wrong". |
+| opus-2 | yes | yes | 1 | Same; `lead()` windows and the rate in force on the order date, `dbt build -s orders+ --full-refresh`; reconciliation and the combination test; wants the raw tables declared as sources so their tests run nightly. |
+| opus-3 | yes | yes | 1 | Same; `lead()` windows with an inner join to `orders`, `dbt build -s orders+ --full-refresh`; per-order reconciliation plus a `daily_revenue`-against-`orders` check, and says the combination test "would not have caught this". |
+
+**Verification.** Every fix matches a shape in the Verification paragraph above.
+
+**What it says.** Nine of nine on both counts, the same as the curated runs. The raw column list showed `effective_from` and the lookup sample listed both `credit_card` rows with the `adyen` one dated 2018-03-01, so every run read the table as a rate history off the sample and took the doubling in January and February as proof the join ignores dates; all nine chose the rate in force on the order date (the curated set had one latest-row pick), and several said outright not to delete the Adyen row. All nine also read the `daily_revenue` monthly table (1696, April 163 against 139) as the stale incremental and called a full refresh, and four read the log's 28 of 32 tests as the seed tests never running. Nothing went wrong; the only soft spot is that four runs still offer a `(payment_method, effective_from)` uniqueness test that passes on the broken data, where haiku-1, opus-1 and opus-3 say so.

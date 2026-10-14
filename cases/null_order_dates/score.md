@@ -37,3 +37,27 @@ the week 6 lookup extension, so the same project the other two models saw; verdi
 | opus-3 | yes | yes | Same; warns not to full-refresh `daily_revenue` before the data is back. |
 
 Opus: 3 of 3 found, 3 of 3 fixed.
+
+## Standard sample
+
+**Runs:** three per model, week 8, on the standard output sample (the same queries on every case: row counts, the raw
+column list, monthly totals of the output tables and ten rows of every table picked by hash); `runs/standard/prompt.md`
+is the frozen prompt every run answered and `runs/standard/` holds the responses. `claude -p --setting-sources ""
+--model <model> --tools "" --output-format json` (Claude Code 2.1.299), project ad0b16b. Same rubric; Defects is how
+many of the case's injected defects the run named as a cause.
+
+| Run | Root cause | Fix | Defects | Notes |
+|---|---|---|---|---|
+| sonnet-1 | yes | yes | 1 | Eight `raw_orders` rows with NULL `ordered_at` (69 and 70 in the sample), the 8 and 149.00 NULL bucket matching the March gap, `daily_revenue` stale from before the NULLs; reload the timestamps from the shop admin, then `dbt build --full-refresh -s daily_revenue+ orders+ customers`, table materialisation as optional hardening; says the warehouse cannot recover the dates. |
+| sonnet-2 | yes | yes | 1 | Same; reload upstream, "Don't coalesce to a made-up date in dbt", then a full refresh of `daily_revenue+ customers`; notes a full refresh would surface the NULL group and fail the existing `not_null`. |
+| sonnet-3 | yes | yes | 1 | Same, calls the dashboard "stale, not right by design"; ask the ingestion owners and re-load, then `dbt build --full-refresh -s stg_orders+`, "Don't coalesce NULL dates into a fake date". |
+| haiku-1 | yes | yes | 1 | Same; restore the timestamps from the source, "Don't backfill dates by guessing", but also adds `where order_date is not null` to `daily_revenue.sql` and a full refresh "so the stale March rows are dropped", which only gives the clean March if the reload runs first as listed; assumes the shop admin reads `daily_revenue`. |
+| haiku-2 | yes | yes | 1 | Same, names every model the NULL passes through; confirm and reload `raw_orders` from the source, "Don't impute silently", then `dbt build --select daily_revenue --full-refresh` once the data is fixed; notes the nightly build does not run seeds. |
+| haiku-3 | yes | yes | 1 | Same, framed as "two separate problems", the NULL batch and the stale window; restore the eight `ordered_at` upstream, then full refresh, warning that a refresh before the reload fails `not_null_daily_revenue_order_date` and "that failure is correct"; a NULL filter only if the dates cannot be recovered. |
+| opus-1 | yes | yes | 1 | Eight March orders with NULL `ordered_at`, placed in March because ids 69 and 70 sit between 63 on 03-06 and 78 on 03-23; patch or reload the rows from the shop admin, fix the loader, then `dbt build --full-refresh -s stg_orders+`. |
+| opus-2 | yes | yes | 1 | Same, 62 customers in `region_revenue` against 60 with a `first_order`; reload from the shop backend, "Don't guess dates in SQL", then full refresh of `stg_orders+`; notes the four seed tests never ran. |
+| opus-3 | yes | yes | 1 | Same; restore from the source, `dbt build --select stg_orders+ --full-refresh` expected to reproduce 622.00 and 35, with a `where order_date is not null` in `daily_revenue.sql` as hardening only alongside the tests; its totals-only reconciliation test would not fail today, since `daily_revenue` still sums to 1672.00 and 99. |
+
+**Verification.** haiku-1's `where order_date is not null` in `daily_revenue` is a no-op once the eight timestamps are reloaded at the source, which its fix lists first, so the end state is the clean data; every other fix matches a shape above.
+
+**What it says.** All nine standard runs found the NULL `ordered_at` batch and gave the reload as the fix, matching the nine curated runs. The standard sample handed them the cause directly: the NULL month row (8 orders, 149.00) in the monthly `orders` query, which with 473 and 27 adds up to the 622 and 35 in the symptom text, and orders 69 and 70 with NULL `ordered_at` in the `raw_orders` and `stg_orders` samples; Opus also used the id ordering to place the rows in March. The curated Sonnet warning about full-refreshing before the reload survives in haiku-3 and in the step order of the others, but haiku-1 framed the refresh as dropping the stale March rows, and opus-3 claimed its totals-only test "fails today: 99 orders / 1672.00 against 91 / 1523.00" when the stale dashboard still carries the 149.00, so the totals agree and only a per-day test catches it. No fix went wrong.

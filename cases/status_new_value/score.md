@@ -35,3 +35,27 @@ the week 6 lookup extension, so the same project the other two models saw; verdi
 | opus-3 | yes | yes | An `is_completed` flag in staging used by `customers` and `orders`, `status` kept as a real state; a status-to-revenue mapping seed with a `relationships` test so a new status cannot be accepted without a decision. |
 
 Opus: 3 of 3 found, 3 of 3 fixed.
+
+## Standard sample
+
+**Runs:** three per model, week 8, on the standard output sample (the same queries on every case: row counts, the raw
+column list, monthly totals of the output tables and ten rows of every table picked by hash); `runs/standard/prompt.md`
+is the frozen prompt every run answered and `runs/standard/` holds the responses. `claude -p --setting-sources ""
+--model <model> --tools "" --output-format json` (Claude Code 2.1.299), project ad0b16b. Same rubric; Defects is how
+many of the case's injected defects the run named as a cause.
+
+| Run | Root cause | Fix | Defects | Notes |
+|---|---|---|---|---|
+| sonnet-1 | yes | yes | 1 | New `delivered` status from March that the admin counts as completed, both `accepted_values` lists widened so the build stays green; maps `delivered` to `completed` in `stg_orders` and restores both lists; asks finance and the ingestion owner to confirm before shipping. |
+| sonnet-2 | yes | yes | 1 | Same cause, `delivered` added to both lists "to make the test pass, but nothing maps it to a meaning"; staging mapping keeping `raw_status`, both lists restored; reconciliation to the raw tables on the finance definition. |
+| sonnet-3 | yes | yes | 1 | Source started emitting `delivered` in March, lists widened; `is_completed` flag in `stg_orders` carried into `orders` and used by `customers`; status map seed with a `relationships` test. |
+| haiku-1 | yes | yes | 1 | `delivered` emitted by the source and never classified, added to both lists "without anyone deciding whether it counts as completed"; `is_completed` flag in staging used by `customers.sql`; admin monthly totals as a seed. Side note that the four seed tests did not run, an artefact of the models-only log. |
+| haiku-2 | yes | yes | 1 | Models count only `completed` while the admin counts `delivered`, both lists accept the value; `status in ('completed', 'delivered')` in `customers.sql`; finance control totals as a seed. |
+| haiku-3 | yes | yes | 1 | `delivered` came in with the raw feed and nothing treats it as completed, both lists widened; staging mapping and both lists restored, framed as "Decide with finance that `delivered` means completed for revenue purposes. If it does, normalise it in staging"; strict five-value `accepted_values` as the guard. |
+| opus-1 | yes | yes | 1 | New `delivered` status from March 2018, placed from the sample (order 75 delivered, order 63 completed), both lists widened; staging mapping keeping `source_status`, `dbt build -s stg_orders+`, lists restored with a warn-level test on the raw column. |
+| opus-2 | yes | yes | 1 | Same cause and mapping with `source_status`, both lists restored; strict `accepted_values` moved to `source_status` so it cannot be relaxed to make a downstream change pass. |
+| opus-3 | yes | yes | 1 | Same cause, March placement confirmed from the sample; staging mapping with `source_status`, lists restored, precautionary full refresh of `daily_revenue`; reconciliation to raw on the finance definition. |
+
+**Verification.** Every fix matches a shape in the Verification paragraph above.
+
+**What it says.** Nine of nine found and fixed, the same as the six curated Sonnet and Haiku runs and the three Opus runs. The standard sample handed the runs the status breakdown (`delivered` 8 orders, 136.00 beside `completed` 967.00), and every run subtracted 967 from 1103 and 143 from 279, matched both gaps to that row, and read the `__delivered` suffix on the `accepted_values` test names in the log as the widened list; only opus-1 and opus-3 also used the `stg_orders` sample row (order 75 on 2018-03-18 marked `delivered`) to place the switch in March, the other seven inferred it from the arithmetic and said so. Every run asked finance or the ingestion owner to confirm that `delivered` counts as completed before shipping, as the curated runs did, and four runs (haiku-1, opus-1, opus-2, opus-3) added the unrelated `total_order_amount` doc drift as a side note.
