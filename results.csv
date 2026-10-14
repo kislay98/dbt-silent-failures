@@ -125,3 +125,129 @@ units_and_rename,mixed,sonnet,3,yes,yes
 units_and_rename,mixed,haiku,1,no,no
 units_and_rename,mixed,haiku,2,no,no
 units_and_rename,mixed,haiku,3,no,no
+coupon_cents,unit change,opus,1,yes,yes
+coupon_cents,unit change,opus,2,yes,yes
+coupon_cents,unit change,opus,3,yes,yes
+duplicate_orders,duplicate rows,opus,1,yes,yes
+duplicate_orders,duplicate rows,opus,2,yes,yes
+duplicate_orders,duplicate rows,opus,3,yes,yes
+duplicate_payments,duplicate rows,opus,1,yes,yes
+duplicate_payments,duplicate rows,opus,2,yes,yes
+duplicate_payments,duplicate rows,opus,3,yes,yes
+gift_card_dollars,unit change,opus,1,yes,yes
+gift_card_dollars,unit change,opus,2,yes,yes
+gift_card_dollars,unit change,opus,3,yes,yes
+join_drops_rows,null flood,opus,1,yes,yes
+join_drops_rows,null flood,opus,2,yes,yes
+join_drops_rows,null flood,opus,3,no,yes
+late_and_duplicate,mixed,opus,1,yes,yes
+late_and_duplicate,mixed,opus,2,yes,yes
+late_and_duplicate,mixed,opus,3,yes,yes
+late_orders,late data,opus,1,yes,yes
+late_orders,late data,opus,2,yes,yes
+late_orders,late data,opus,3,yes,yes
+late_payments,late data,opus,1,yes,yes
+late_payments,late data,opus,2,yes,yes
+late_payments,late data,opus,3,yes,yes
+null_order_dates,null flood,opus,1,yes,yes
+null_order_dates,null flood,opus,2,yes,yes
+null_order_dates,null flood,opus,3,yes,yes
+null_payment_amounts,null flood,opus,1,yes,yes
+null_payment_amounts,null flood,opus,2,yes,yes
+null_payment_amounts,null flood,opus,3,yes,yes
+payment_methods_fanout,join fan-out,sonnet,1,yes,yes
+payment_methods_fanout,join fan-out,sonnet,2,yes,yes
+payment_methods_fanout,join fan-out,sonnet,3,yes,yes
+payment_methods_fanout,join fan-out,haiku,1,yes,yes
+payment_methods_fanout,join fan-out,haiku,2,yes,yes
+payment_methods_fanout,join fan-out,haiku,3,yes,yes
+payment_method_renamed,schema drift,opus,1,yes,yes
+payment_method_renamed,schema drift,opus,2,yes,yes
+payment_method_renamed,schema drift,opus,3,yes,yes
+processor_history,join fan-out,sonnet,1,yes,yes
+processor_history,join fan-out,sonnet,2,yes,yes
+processor_history,join fan-out,sonnet,3,yes,yes
+processor_history,join fan-out,haiku,1,yes,yes
+processor_history,join fan-out,haiku,2,yes,yes
+processor_history,join fan-out,haiku,3,yes,yes
+region_fanout,join fan-out,opus,1,yes,yes
+region_fanout,join fan-out,opus,2,yes,yes
+region_fanout,join fan-out,opus,3,yes,yes
+regions_fanout_history,join fan-out,opus,1,yes,yes
+regions_fanout_history,join fan-out,opus,2,yes,yes
+regions_fanout_history,join fan-out,opus,3,yes,yes
+fanout_and_nulls,mixed,sonnet,1,yes,yes
+fanout_and_nulls,mixed,sonnet,2,yes,yes
+fanout_and_nulls,mixed,sonnet,3,yes,yes
+fanout_and_nulls,mixed,haiku,1,yes,yes
+fanout_and_nulls,mixed,haiku,2,yes,yes
+fanout_and_nulls,mixed,haiku,3,yes,yes
+status_new_value,category change,opus,1,yes,yes
+status_new_value,category change,opus,2,yes,yes
+status_new_value,category change,opus,3,yes,yes
+status_renamed,schema drift,opus,1,yes,yes
+status_renamed,schema drift,opus,2,yes,yes
+status_renamed,schema drift,opus,3,yes,yes
+duplicates_and_units,mixed,sonnet,1,yes,yes
+duplicates_and_units,mixed,sonnet,2,yes,yes
+duplicates_and_units,mixed,sonnet,3,yes,yes
+duplicates_and_units,mixed,haiku,1,no,no
+duplicates_and_units,mixed,haiku,2,yes,yes
+duplicates_and_units,mixed,haiku,3,yes,yes
+status_title_case,category change,opus,1,yes,yes
+status_title_case,category change,opus,2,yes,yes
+status_title_case,category change,opus,3,yes,yes
+rename_and_new_status,mixed,sonnet,1,yes,yes
+rename_and_new_status,mixed,sonnet,2,no,no
+rename_and_new_status,mixed,sonnet,3,yes,yes
+rename_and_new_status,mixed,haiku,1,yes,yes
+rename_and_new_status,mixed,haiku,2,no,no
+rename_and_new_status,mixed,haiku,3,no,no
+transfers_in_micros,unit change,opus,1,yes,yes
+transfers_in_micros,unit change,opus,2,yes,yes
+transfers_in_micros,unit change,opus,3,yes,yes
+units_and_rename,mixed,opus,1,yes,yes
+units_and_rename,mixed,opus,2,yes,yes
+units_and_rename,mixed,opus,3,yes,yes
+late_and_new_status,mixed,sonnet,1,yes,yes
+late_and_new_status,mixed,sonnet,2,yes,yes
+late_and_new_status,mixed,sonnet,3,yes,yes
+late_and_new_status,mixed,haiku,1,yes,yes
+late_and_new_status,mixed,haiku,2,yes,yes
+late_and_new_status,mixed,haiku,3,yes,yes
+utc_reexport,timezone shift,opus,1,yes,yes
+utc_reexport,timezone shift,opus,2,yes,yes
+utc_reexport,timezone shift,opus,3,yes,yes
+rename_and_utc,mixed,sonnet,1,yes,yes
+rename_and_utc,mixed,sonnet,2,yes,yes
+rename_and_utc,mixed,sonnet,3,yes,yes
+rename_and_utc,mixed,haiku,1,yes,yes
+rename_and_utc,mixed,haiku,2,yes,yes
+rename_and_utc,mixed,haiku,3,no,no
+payment_methods_fanout,join fan-out,opus,1,yes,yes
+payment_methods_fanout,join fan-out,opus,2,yes,yes
+payment_methods_fanout,join fan-out,opus,3,yes,yes
+processor_history,join fan-out,opus,1,yes,yes
+processor_history,join fan-out,opus,2,yes,yes
+processor_history,join fan-out,opus,3,yes,yes
+fanout_and_nulls,mixed,opus,1,yes,yes
+fanout_and_nulls,mixed,opus,2,yes,yes
+fanout_and_nulls,mixed,opus,3,yes,yes
+utc_switch,timezone shift,opus,1,yes,no
+utc_switch,timezone shift,opus,2,yes,no
+duplicates_and_units,mixed,opus,1,yes,yes
+duplicates_and_units,mixed,opus,2,yes,yes
+duplicates_and_units,mixed,opus,3,yes,yes
+utc_switch_blind,timezone shift,opus,1,yes,no
+utc_switch_blind,timezone shift,opus,2,yes,no
+utc_switch_blind,timezone shift,opus,3,yes,no
+rename_and_new_status,mixed,opus,1,no,no
+rename_and_new_status,mixed,opus,2,no,no
+rename_and_new_status,mixed,opus,3,no,no
+rename_and_utc,mixed,opus,1,yes,yes
+rename_and_utc,mixed,opus,2,yes,yes
+rename_and_utc,mixed,opus,3,yes,yes
+late_and_new_status,mixed,opus,1,yes,yes
+late_and_new_status,mixed,opus,2,yes,yes
+late_and_new_status,mixed,opus,3,yes,yes
+utc_switch,timezone shift,opus,3,yes,no

@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).parents[1]
 TYPES = ["duplicate rows", "join fan-out", "schema drift", "null flood", "timezone shift", "late data",
          "unit change", "category change", "mixed"]
-MODELS = [("sonnet", "Sonnet", "#2a78d6"), ("haiku", "Haiku", "#eb6834")]  # validated categorical slots 1 and 2
+MODELS = [("sonnet", "Sonnet", "#2a78d6"), ("haiku", "Haiku", "#eb6834"), ("opus", "Opus", "#1baf7a")]  # validated categorical slots 1 to 3
 PANELS = [("root_cause", "Root cause found", "the run names the change that broke the data"),
           ("fix", "Complete fix", "the fix makes every affected value right, strict")]
 
