@@ -11,14 +11,18 @@ injection, and the key number in ground_truth.md matches on both sides:
 
     **Key number:** `select round(sum(amount), 2) from orders` is 1672.0 clean and 1852.0 broken.
 
-prompt.md holds the symptom text, whether seeds are shown, and the queries
-whose results the model gets; the project files, the broken build log and the
-query results are assembled at run time. jaffle_shop/ is copied aside before
+prompt.md holds the symptom text, whether seeds are shown, whether the build
+log is the full build or a models-and-tests build (`Log: models only` runs
+`dbt build --exclude resource_type:seed` after the injection, like a nightly
+build where ingestion loads the sources), and the queries whose results the
+model gets; the project files, the broken build log and the query results are
+assembled at run time. Each saved run records the sha256 of the prompt it answered. jaffle_shop/ is copied aside before
 the injection and put back after it, so uncommitted project changes survive.
 After the injection the seeds are reloaded in full (a source table with a new
 column must land) and the models run incrementally, like a nightly build.
 """
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -169,9 +173,14 @@ def build_prompt(case):
     header, _, rest = text.partition("\n## Included\n")
     included, _, queries_section = rest.partition("\n## Queries\n")
     seeds_shown = re.search(r"Seeds:\s*shown", included) is not None
+    models_only = re.search(r"Log:\s*models only", included) is not None
     queries = re.findall(r"```sql\n(.*?)\n```", queries_section, re.S)
     clean_build()
     with injected(case) as (_, _, log):  # project files are read in the injected state: a case may edit them
+        if models_only:
+            ok, summary, log = dbt("build", "--exclude", "resource_type:seed")
+            if not ok:
+                raise CaseError(f"models-only build failed after injection: {summary}")
         files = [SHOP / "dbt_project.yml"] + sorted(p for p in SHOP.glob("models/**/*") if p.suffix in (".sql", ".yml"))
         if seeds_shown:
             files += sorted(SHOP.glob("seeds/*.csv"))
@@ -191,6 +200,7 @@ def run_models(case, models, times):
     """Assemble the prompt once, run every model `times` times concurrently, save each under runs/."""
     prompt = build_prompt(case)
     version = project_version()
+    digest = hashlib.sha256(prompt.encode()).hexdigest()[:12]
 
     def one(model):
         cmd = ["claude", "-p", "--setting-sources", "", "--model", model, "--tools", "", "--output-format", "json"]
@@ -204,7 +214,7 @@ def run_models(case, models, times):
             return model, None, f"claude failed: {d.get('result')}"
         shown = " ".join(f'"{a}"' if a == "" else a for a in cmd)
         head = (f"{next(iter(d.get('modelUsage', {})), model)} | {shown} | {time.time() - t0:.0f} s | "
-                f"USD {d.get('total_cost_usd', 0):.3f} | {date.today()} | project {version}")
+                f"USD {d.get('total_cost_usd', 0):.3f} | {date.today()} | project {version} | prompt {digest}")
         return model, head, d["result"].rstrip()
 
     jobs = [m for m in models for _ in range(times)]
