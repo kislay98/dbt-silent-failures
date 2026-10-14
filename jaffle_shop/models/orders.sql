@@ -12,20 +12,33 @@ payments as (
 
 ),
 
+payment_methods as (
+
+    {#-
+    Processor and fee rate per payment method, loaded as a seed like the other raw tables
+    #}
+    select * from {{ ref('raw_payment_methods') }}
+
+),
+
 order_payments as (
 
     select
-        order_id,
+        payments.order_id,
 
         {% for payment_method in payment_methods -%}
-        sum(case when payment_method = '{{ payment_method }}' then amount else 0 end) as {{ payment_method }}_amount,
+        sum(case when payments.payment_method = '{{ payment_method }}' then payments.amount else 0 end) as {{ payment_method }}_amount,
         {% endfor -%}
 
-        sum(amount) as total_amount
+        sum(payments.amount) as total_amount,
+        round(sum(payments.amount * coalesce(payment_methods.fee_rate, 0)), 2) as fees
 
     from payments
 
-    group by order_id
+    left join payment_methods
+        on payments.payment_method = payment_methods.payment_method
+
+    group by payments.order_id
 
 ),
 
@@ -43,7 +56,8 @@ final as (
 
         {% endfor -%}
 
-        order_payments.total_amount as amount
+        order_payments.total_amount as amount,
+        order_payments.fees
 
     from orders
 

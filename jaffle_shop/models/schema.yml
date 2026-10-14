@@ -86,6 +86,11 @@ models:
         tests:
           - not_null
 
+      - name: fees
+        description: Processor fees (AUD) on the order's payments, at the fee rate of each payment method
+        tests:
+          - not_null
+
   - name: daily_revenue
     description: Orders and revenue per order date. Incremental, rebuilds the last three days on each run
 
@@ -126,5 +131,17 @@ seeds:
           - not_null
 
       - name: region
+        tests:
+          - not_null
+
+  - name: raw_payment_methods
+    description: One row per payment method from the processor feed, with its processor and fee rate
+
+    columns:
+      - name: payment_method
+        tests:
+          - not_null
+
+      - name: fee_rate
         tests:
           - not_null

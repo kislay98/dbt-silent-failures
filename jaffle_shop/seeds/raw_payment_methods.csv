@@ -1,0 +1,5 @@
+payment_method,processor,fee_rate
+credit_card,stripe,0.029
+coupon,internal,0
+bank_transfer,anz,0.005
+gift_card,internal,0
