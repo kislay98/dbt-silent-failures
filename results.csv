@@ -1,0 +1,67 @@
+case,type,model,run,root_cause,fix
+duplicate_payments,duplicate rows,sonnet,1,yes,yes
+duplicate_payments,duplicate rows,sonnet,2,yes,yes
+duplicate_payments,duplicate rows,sonnet,3,yes,yes
+duplicate_payments,duplicate rows,haiku,1,yes,yes
+duplicate_payments,duplicate rows,haiku,2,yes,yes
+duplicate_payments,duplicate rows,haiku,3,yes,yes
+gift_card_dollars,unit change,sonnet,1,yes,yes
+gift_card_dollars,unit change,sonnet,2,yes,yes
+gift_card_dollars,unit change,sonnet,3,yes,yes
+gift_card_dollars,unit change,haiku,1,yes,yes
+gift_card_dollars,unit change,haiku,2,yes,yes
+gift_card_dollars,unit change,haiku,3,yes,yes
+region_fanout,join fan-out,sonnet,1,yes,yes
+region_fanout,join fan-out,sonnet,2,yes,yes
+region_fanout,join fan-out,sonnet,3,yes,yes
+region_fanout,join fan-out,haiku,1,yes,yes
+region_fanout,join fan-out,haiku,2,yes,yes
+region_fanout,join fan-out,haiku,3,yes,yes
+status_renamed,schema drift,sonnet,1,yes,yes
+status_renamed,schema drift,sonnet,2,yes,yes
+status_renamed,schema drift,sonnet,3,yes,yes
+status_renamed,schema drift,haiku,1,yes,yes
+status_renamed,schema drift,haiku,2,yes,yes
+status_renamed,schema drift,haiku,3,yes,yes
+utc_switch,timezone shift,sonnet,1,yes,partly
+utc_switch,timezone shift,sonnet,2,yes,partly
+utc_switch,timezone shift,sonnet,3,yes,partly
+utc_switch,timezone shift,haiku,1,yes,partly
+utc_switch,timezone shift,haiku,2,yes,partly
+utc_switch,timezone shift,haiku,3,yes,partly
+late_orders,late data,sonnet,1,yes,yes
+late_orders,late data,sonnet,2,yes,yes
+late_orders,late data,sonnet,3,yes,yes
+late_orders,late data,haiku,1,yes,yes
+late_orders,late data,haiku,2,yes,yes
+late_orders,late data,haiku,3,yes,yes
+status_title_case,category change,sonnet,1,yes,yes
+status_title_case,category change,sonnet,2,yes,yes
+status_title_case,category change,sonnet,3,yes,yes
+status_title_case,category change,haiku,1,yes,yes
+status_title_case,category change,haiku,2,yes,yes
+status_title_case,category change,haiku,3,yes,yes
+join_drops_rows,null flood,sonnet,1,yes,yes
+join_drops_rows,null flood,sonnet,2,yes,yes
+join_drops_rows,null flood,sonnet,3,yes,yes
+join_drops_rows,null flood,haiku,1,yes,yes
+join_drops_rows,null flood,haiku,2,partly,no
+join_drops_rows,null flood,haiku,3,yes,yes
+utc_switch_blind,timezone shift,sonnet,1,partly,no
+utc_switch_blind,timezone shift,sonnet,2,partly,no
+utc_switch_blind,timezone shift,sonnet,3,yes,partly
+utc_switch_blind,timezone shift,haiku,1,partly,no
+utc_switch_blind,timezone shift,haiku,2,yes,no
+utc_switch_blind,timezone shift,haiku,3,yes,partly
+region_fanout_quiet,join fan-out,sonnet,1,yes,yes
+region_fanout_quiet,join fan-out,sonnet,2,yes,yes
+region_fanout_quiet,join fan-out,sonnet,3,yes,yes
+region_fanout_quiet,join fan-out,haiku,1,yes,yes
+region_fanout_quiet,join fan-out,haiku,2,yes,yes
+region_fanout_quiet,join fan-out,haiku,3,yes,yes
+late_and_duplicate,mixed,sonnet,1,yes,yes
+late_and_duplicate,mixed,sonnet,2,yes,yes
+late_and_duplicate,mixed,sonnet,3,yes,yes
+late_and_duplicate,mixed,haiku,1,yes,yes
+late_and_duplicate,mixed,haiku,2,yes,yes
+late_and_duplicate,mixed,haiku,3,yes,yes
