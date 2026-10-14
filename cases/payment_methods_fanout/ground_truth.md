@@ -1,0 +1,39 @@
+# Ground truth: payment_methods_fanout
+
+**What broke:** `cases/payment_methods_fanout/inject.py` appends a second `bank_transfer` row to
+`jaffle_shop/seeds/raw_payment_methods.csv` (processor `westpac`, fee rate 0.005, the same rate as the `anz` row), like
+a processor feed that started listing bank transfers under both settlement banks. The lookup goes from 4 rows to 5,
+with two rows for one payment method and no new column.
+
+**Where it shows:** `orders` joins the lookup on `payment_method` before it sums the payments, so each of the 33 bank
+transfer payments is counted twice: `bank_transfer_amount` is 822.00 instead of 411.00, `orders.amount` 2083.00
+instead of 1672.00 (January 632.00 against 496.00, February 489.00 against 415.00, March 784.00 against 622.00, April
+178.00 against 139.00) and `fees` 29.39 instead of 27.41. Order 5 shows 34.00 for a 17.00 transfer, order 13 shows
+33.00 instead of 19.00. `daily_revenue` picks up the doubling for 7 April only, inside its three-day window (48.00
+instead of 24.00, 1696.00 in total). `stg_payments`, `customers` and `region_revenue` read the payments without the
+lookup and stay right (411.00 of transfers, 1672.00 in total), which is the discrepancy finance sees.
+
+**Why nothing fails:** every dbt test still passes (44/44): nothing tests the lookup key for uniqueness, `orders` is
+still one row per order after its `group by`, and the `not_null` tests pass on inflated values.
+
+**How the output changes:**
+
+| Measure | Clean | Broken |
+|---|---|---|
+| `sum(bank_transfer_amount)`, `sum(amount)`, `sum(fees)` from `orders` | 411.0, 1672.0, 27.41 | 822.0, 2083.0, 29.39 |
+| bank transfers by month in `orders` | 136.0, 74.0, 162.0, 39.0 | 272.0, 148.0, 324.0, 78.0 |
+| `orders.bank_transfer_amount` for orders 5, 10, 13, 25 | 17.0, 26.0, 14.0, 20.0 | 34.0, 52.0, 28.0, 40.0 |
+| `orders.amount` for orders 5, 10, 13, 25 | 17.0, 26.0, 19.0, 58.0 | 34.0, 52.0, 33.0, 78.0 |
+| `sum(revenue)` from `daily_revenue` | 1672.0 | 1696.0 (7 April rebuilt at 48.0) |
+| `sum(amount)` from `stg_payments` by method | 411.0, 185.0, 871.0, 205.0 | unchanged |
+| `sum(revenue)` from `region_revenue`, `sum(customer_lifetime_value)` from `customers` | 1672.0, 1672.0 | unchanged |
+| rows in `raw_payment_methods` | 4 | 5, two for `bank_transfer` |
+
+**Key number:** `select round(sum(bank_transfer_amount), 2) from orders` is 411.0 clean and 822.0 broken (checked by `check_case.py`).
+
+**Correct fix:** one row per payment method before the join: remove the extra row at the source
+(`git checkout jaffle_shop/seeds/raw_payment_methods.csv`, or have the feed send one row per method), or collapse the
+lookup to one row per `payment_method` in `orders.sql` before joining it (a `group by` or a `row_number` pick), then
+`dbt build --full-refresh` so `daily_revenue` rebuilds 7 April. Halving the bank transfer column, or dropping the join
+and the `fees` column, is wrong. Guards: a `unique` test on `raw_payment_methods.payment_method`, a singular test that
+`sum(orders.amount)` equals `sum(stg_payments.amount)`, or a reconciliation of the four method columns to the statements.
