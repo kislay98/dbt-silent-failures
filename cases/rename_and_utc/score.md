@@ -56,7 +56,9 @@ half alone. The one miss converted every row because it would not commit to whic
 column list, monthly totals of the output tables and ten rows of every table picked by hash); `runs/standard/prompt.md`
 is the frozen prompt every run answered and `runs/standard/` holds the responses. `claude -p --setting-sources ""
 --model <model> --tools "" --output-format json` (Claude Code 2.1.299), project ad0b16b. Same rubric; Defects is how
-many of the case's injected defects the run named as a cause.
+many of the case's injected defects the run named as a cause. These runs are out of the headline (`headline=no` in `results.csv`): the standard
+sample never shows order 73's warehouse row, so the 5h30 offset cannot be derived from this prompt, and `cases/rename_and_utc_v2/`
+carries it in the symptom text (week 9).
 
 | Run | Root cause | Fix | Defects | Notes |
 |---|---|---|---|---|
