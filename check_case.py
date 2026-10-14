@@ -16,7 +16,10 @@ log is the full build or a models-and-tests build (`Log: models only` runs
 `dbt build --exclude resource_type:seed` after the injection, like a nightly
 build where ingestion loads the sources), and the queries whose results the
 model gets; the project files, the broken build log and the query results are
-assembled at run time. Each saved run records the sha256 of the prompt it answered. jaffle_shop/ is copied aside before
+assembled at run time. Each saved run records the sha256 of the prompt it answered;
+a model call that gives no answer within TIMEOUT seconds is reported as a failed
+run and the batch goes on. dbt runs with a full parse, because the partial-parse cache
+once kept a test name from a case that had edited a schema file. jaffle_shop/ is copied aside before
 the injection and put back after it, so uncommitted project changes survive.
 After the injection the seeds are reloaded in full (a source table with a new
 column must land) and the models run incrementally, like a nightly build.
@@ -41,6 +44,7 @@ import duckdb
 ROOT = Path(__file__).parent
 SHOP = ROOT / "jaffle_shop"
 KEEP = {".venv", "target", "logs", ".user.yml"}  # build artifacts, not part of the project
+TIMEOUT = 300  # seconds per model call; a hung call is reported as a failed run and the batch goes on
 KEY = re.compile(r"\*\*Key number:\*\* `(.+?)` is (\S+?) clean and (\S+?) broken")
 
 
@@ -54,7 +58,7 @@ def sh(*cmd, cwd=ROOT, **kw):
 
 def dbt(*args):
     """(ok, 'PASS=.. ERROR=..' summary, full stdout)"""
-    r = sh("uv", "run", "dbt", *args, "--no-use-colors", cwd=SHOP)
+    r = sh("uv", "run", "dbt", *args, "--no-use-colors", "--no-partial-parse", cwd=SHOP)  # a full parse: the cache kept a renamed test after a case edited a schema file
     done = [l.split("Done. ")[-1] for l in r.stdout.splitlines() if "Done. " in l]
     return r.returncode == 0, done[-1] if done else r.stdout[-800:], r.stdout
 
@@ -205,7 +209,10 @@ def run_models(case, models, times):
     def one(model):
         cmd = ["claude", "-p", "--setting-sources", "", "--model", model, "--tools", "", "--output-format", "json"]
         t0 = time.time()
-        r = subprocess.run(cmd, input=prompt, capture_output=True, text=True, cwd=tempfile.gettempdir())
+        try:
+            r = subprocess.run(cmd, input=prompt, capture_output=True, text=True, cwd=tempfile.gettempdir(), timeout=TIMEOUT)
+        except subprocess.TimeoutExpired:
+            return model, None, f"claude failed: no answer after {TIMEOUT} s"
         try:
             d = json.loads(r.stdout)
         except json.JSONDecodeError:
