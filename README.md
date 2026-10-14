@@ -51,34 +51,38 @@ uv run --project jaffle_shop check_case.py cases/utc_switch --run sonnet --run h
 
 | Case | Type | What breaks | Sonnet, found / fixed | Haiku, found / fixed | Opus, found / fixed |
 |---|---|---|---|---|---|
-| duplicate_payments | duplicate rows | 12 payments re-ingested with fresh ids | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| duplicate_orders | duplicate rows | a two-week slice of February orders replayed with fresh ids, their payments re-keyed to them | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| gift_card_dollars | unit change | 12 gift card payments sent in dollars, divided by 100 again | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| coupon_cents | unit change | 6 of 13 coupon payments switch to dollars from 15 March, the rest stay in cents | 3 / 3 | 3 / 3 | 2 / 2 | 3 / 3 |
-| transfers_in_micros | unit change | bank transfers from 15 March reported in micro-units, ten payments 10,000 times too large | 3 / 3 | 3 / 3 | 2 / 3 | 3 / 3 |
-| region_fanout | join fan-out | 8 customers' region rows re-sent, payments counted twice in the regional report | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| regions_fanout_history | join fan-out | the regions feed starts carrying history, 6 customers move region and are counted in both | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
+| duplicate_payments | duplicate rows | 12 payments re-ingested with fresh ids | 3 / 3 | 3 / 3 | 3 / 3 |
+| duplicate_orders | duplicate rows | a two-week slice of February orders replayed with fresh ids, their payments re-keyed to them | 3 / 3 | 3 / 3 | 3 / 3 |
+| gift_card_dollars | unit change | 12 gift card payments sent in dollars, divided by 100 again | 3 / 3 | 3 / 3 | 3 / 3 |
+| coupon_cents | unit change | 6 of 13 coupon payments switch to dollars from 15 March, the rest stay in cents | 3 / 3 | 2 / 2 | 3 / 3 |
+| transfers_in_micros | unit change | bank transfers from 15 March reported in micro-units, ten payments 10,000 times too large | 3 / 3 | 2 / 3 | 3 / 3 |
+| region_fanout | join fan-out | 8 customers' region rows re-sent, payments counted twice in the regional report | 3 / 3 | 3 / 3 | 3 / 3 |
+| regions_fanout_history | join fan-out | the regions feed starts carrying history, 6 customers move region and are counted in both | 3 / 3 | 3 / 3 | 3 / 3 |
 | payment_methods_fanout | join fan-out | the processor feed lists bank transfers under two banks, every transfer counted twice inside `orders` | 3 / 3 | 3 / 3 | 3 / 3 |
 | processor_history | join fan-out | the payment-method lookup starts carrying history, every credit card payment counted twice in every month | 3 / 3 | 3 / 3 | 3 / 3 |
-| status_renamed | schema drift | orders feed renamed `status` to `order_status` from 1 March, old column empty | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| payment_method_renamed | schema drift | payments feed writes `method` from 1 March, `payment_method` empty, the per-method columns go to 0 | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| join_drops_rows | null flood | second leg of every split payment arrives with no order id, 13 payments vanish from the marts | 3 / 3 | 3 / 3 | 2 / 2 | 2 / 3 |
-| null_order_dates | null flood | one week of March orders lands without a timestamp, March by order date is short, the dashboard keeps the old March | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| null_payment_amounts | null flood | second instalments of 8 split orders land with no amount and `sum` skips them | 3 / 3 | 3 / 3 | 3 / 2 | 3 / 3 |
-| utc_switch | timezone shift | orders feed switched from local time to UTC on 1 March, 7 orders land a day early | 3 / 0 | 3 / 0 | 3 / 0 | 3 / 0 |
-| utc_switch_blind | timezone shift | the same, prompt without the example order | 1 / 0 | 1 / 0 | 2 / 0 | 3 / 0 |
-| utc_reexport | timezone shift | the whole orders history re-exported in UTC, 14 orders land a day early across every month | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| late_orders | late data | 6 February orders backfilled in April, the incremental daily table never picks them up | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| late_payments | late data | second instalments for 8 February orders land in April, the daily table keeps the old revenue | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| status_title_case | category change | app writes statuses in title case from 15 February, `accepted_values` widened to hide it | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| status_new_value | category change | app writes `delivered` for completed orders from 10 March, `accepted_values` widened to hide it | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| late_and_duplicate | mixed | the late orders plus 12 replayed payments in one load | 3 / 3 | 3 / 3 | 3 / 3 | 3 / 3 |
-| units_and_rename | mixed | the payment-method rename plus the coupon dollars in one load | 3 / 1 | 3 / 1 | 0 / 0 | 3 / 3 |
+| status_renamed | schema drift | orders feed renamed `status` to `order_status` from 1 March, old column empty | 3 / 3 | 3 / 3 | 3 / 3 |
+| payment_method_renamed | schema drift | payments feed writes `method` from 1 March, `payment_method` empty, the per-method columns go to 0 | 3 / 3 | 3 / 3 | 3 / 3 |
+| join_drops_rows | null flood | second leg of every split payment arrives with no order id, 13 payments vanish from the marts | 3 / 3 | 2 / 2 | 2 / 3 |
+| null_order_dates | null flood | one week of March orders lands without a timestamp, March by order date is short, the dashboard keeps the old March | 3 / 3 | 3 / 3 | 3 / 3 |
+| null_payment_amounts | null flood | second instalments of 8 split orders land with no amount and `sum` skips them | 3 / 3 | 3 / 2 | 3 / 3 |
+| utc_switch | timezone shift | orders feed switched from local time to UTC on 1 March, 7 orders land a day early | 3 / 0 | 3 / 0 | 3 / 0 |
+| utc_switch_blind | timezone shift | the same, prompt without the example order | 1 / 0 | 2 / 0 | 3 / 0 |
+| utc_reexport | timezone shift | the whole orders history re-exported in UTC, 14 orders land a day early across every month | 3 / 3 | 3 / 3 | 3 / 3 |
+| late_orders | late data | 6 February orders backfilled in April, the incremental daily table never picks them up | 3 / 3 | 3 / 3 | 3 / 3 |
+| late_payments | late data | second instalments for 8 February orders land in April, the daily table keeps the old revenue | 3 / 3 | 3 / 3 | 3 / 3 |
+| status_title_case | category change | app writes statuses in title case from 15 February, `accepted_values` widened to hide it | 3 / 3 | 3 / 3 | 3 / 3 |
+| status_new_value | category change | app writes `delivered` for completed orders from 10 March, `accepted_values` widened to hide it | 3 / 3 | 3 / 3 | 3 / 3 |
+| late_and_duplicate | mixed | the late orders plus 12 replayed payments in one load | 3 / 3 | 3 / 3 | 3 / 3 |
+| units_and_rename | mixed | the payment-method rename plus the coupon dollars in one load | 3 / 1 | 0 / 0 | 3 / 3 |
 | fanout_and_nulls | mixed | a second credit card row in the lookup plus eight NULL payment amounts, pulling the total both ways | 3 / 3 | 3 / 3 | 3 / 3 |
 | duplicates_and_units | mixed | twelve replayed payments plus gift cards in dollars, nearly cancelling in the total | 3 / 3 | 2 / 2 | 3 / 3 |
 | rename_and_new_status | mixed | the status rename plus `delivered` written in the new column only, hidden behind the NULLs | 2 / 2 | 1 / 1 | 0 / 0 |
 | late_and_new_status | mixed | six February orders a month late, written as `delivered` like the March ones | 3 / 3 | 3 / 3 | 3 / 3 |
 | rename_and_utc | mixed | the timestamp column renamed and written in UTC from 1 March, the backfill left in local time | 3 / 3 | 2 / 2 | 3 / 3 |
+| late_and_timezone | mixed | six February orders a month late from a store whose new sync writes UTC, three of them a day early, one in January | 3 / 3 | 1 / 1 | 3 / 3 |
+| duplicates_and_rename | mixed | the payment-method rename plus a retried first batch, five migrated payments loaded twice | 0 / 0 | 0 / 0 | 0 / 0 |
+| category_and_units | mixed | `delivered` from 10 March plus coupon dollars from 15 March, one order in both, 1.98 left after the status fix | 2 / 2 | 0 / 0 | 3 / 3 |
+| fanout_and_late | mixed | six February orders a month late, their customers' region rows re-sent with the backfill | 3 / 1 | 3 / 3 | 3 / 3 |
 
 Each run is scored on two yes/no questions: **root cause found**, the run names the change that broke the data (naming
 only the mechanism, or hedging between the right cause and a wrong one, is no), and **complete fix**, the run's fix
@@ -89,7 +93,8 @@ Sonnet is `claude-sonnet-5-5`, Haiku is `claude-haiku-5-5` and Opus is `claude-o
 `claude -p --setting-sources ""` on Claude Code 2.1.296, tools off, three times each; the Opus runs on the first 21
 cases were made in week 6 on the same project version the other two models saw. Prompts from `region_fanout` on hide the seed data; cases from `duplicate_orders` on
 (week 4 and later) get a models-and-tests build log instead of the full build (`Log: models only` in `prompt.md`), and
-every run from week 5 on records the sha256 of the prompt it answered. A mixed case counts toward each of its two types
+every run from week 5 on records the sha256 of the prompt it answered. `rename_and_utc` and `late_and_timezone` were each run once on an earlier prompt before one clause was
+added; those runs and prompts are kept in `runs/first_prompt/` under each case and are not in `results.csv`. A mixed case counts toward each of its two types
 for the four-per-type target; `results.csv` keeps `mixed` as its type for the chart.
 
 ![Root cause found and complete fix by failure type and model](reports/success_by_type.svg)

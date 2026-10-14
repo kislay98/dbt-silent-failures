@@ -46,12 +46,12 @@
 <path d="M718.3,266.0 V80.0 Q718.3,76.0 722.3,76.0 H736.3 Q740.3,76.0 740.3,80.0 V266.0 Z" fill="#eb6834"><title>Haiku, category change, root cause found: 6 of 6 runs</title></path>
 <path d="M742.3,266.0 V80.0 Q742.3,76.0 746.3,76.0 H760.3 Q764.3,76.0 764.3,80.0 V266.0 Z" fill="#1baf7a"><title>Opus, category change, root cause found: 6 of 6 runs</title></path>
 <text x="729.3" y="284" class="ink" text-anchor="middle">category change</text>
-<path d="M784.1,266.0 V89.0 Q784.1,85.0 788.1,85.0 H802.1 Q806.1,85.0 806.1,89.0 V266.0 Z" fill="#2a78d6"><title>Sonnet, mixed, root cause found: 20 of 21 runs</title></path>
-<text x="795.1" y="80.0" class="ink" text-anchor="middle">20/21</text>
-<path d="M808.1,266.0 V143.3 Q808.1,139.3 812.1,139.3 H826.1 Q830.1,139.3 830.1,143.3 V266.0 Z" fill="#eb6834"><title>Haiku, mixed, root cause found: 14 of 21 runs</title></path>
-<text x="819.1" y="134.3" class="ink" text-anchor="middle">14/21</text>
-<path d="M832.1,266.0 V107.1 Q832.1,103.1 836.1,103.1 H850.1 Q854.1,103.1 854.1,107.1 V266.0 Z" fill="#1baf7a"><title>Opus, mixed, root cause found: 18 of 21 runs</title></path>
-<text x="843.1" y="98.1" class="ink" text-anchor="middle">18/21</text>
+<path d="M784.1,266.0 V108.8 Q784.1,104.8 788.1,104.8 H802.1 Q806.1,104.8 806.1,108.8 V266.0 Z" fill="#2a78d6"><title>Sonnet, mixed, root cause found: 28 of 33 runs</title></path>
+<text x="795.1" y="99.8" class="ink" text-anchor="middle">28/33</text>
+<path d="M808.1,266.0 V166.4 Q808.1,162.4 812.1,162.4 H826.1 Q830.1,162.4 830.1,166.4 V266.0 Z" fill="#eb6834"><title>Haiku, mixed, root cause found: 18 of 33 runs</title></path>
+<text x="819.1" y="157.4" class="ink" text-anchor="middle">18/33</text>
+<path d="M832.1,266.0 V114.5 Q832.1,110.5 836.1,110.5 H850.1 Q854.1,110.5 854.1,114.5 V266.0 Z" fill="#1baf7a"><title>Opus, mixed, root cause found: 27 of 33 runs</title></path>
+<text x="843.1" y="105.5" class="ink" text-anchor="middle">27/33</text>
 <text x="819.1" y="284" class="ink" text-anchor="middle">mixed</text>
 <text x="56" y="334"><tspan class="ink" font-weight="600">Complete fix</tspan><tspan class="muted">: the fix makes every affected value right, strict</tspan></text>
 <line x1="56" x2="864" y1="536.0" y2="536.0" class="axis" stroke-width="1"/>
@@ -97,12 +97,12 @@
 <path d="M718.3,536.0 V350.0 Q718.3,346.0 722.3,346.0 H736.3 Q740.3,346.0 740.3,350.0 V536.0 Z" fill="#eb6834"><title>Haiku, category change, complete fix: 6 of 6 runs</title></path>
 <path d="M742.3,536.0 V350.0 Q742.3,346.0 746.3,346.0 H760.3 Q764.3,346.0 764.3,350.0 V536.0 Z" fill="#1baf7a"><title>Opus, category change, complete fix: 6 of 6 runs</title></path>
 <text x="729.3" y="554" class="ink" text-anchor="middle">category change</text>
-<path d="M784.1,536.0 V377.1 Q784.1,373.1 788.1,373.1 H802.1 Q806.1,373.1 806.1,377.1 V536.0 Z" fill="#2a78d6"><title>Sonnet, mixed, complete fix: 18 of 21 runs</title></path>
-<text x="795.1" y="368.1" class="ink" text-anchor="middle">18/21</text>
-<path d="M808.1,536.0 V413.3 Q808.1,409.3 812.1,409.3 H826.1 Q830.1,409.3 830.1,413.3 V536.0 Z" fill="#eb6834"><title>Haiku, mixed, complete fix: 14 of 21 runs</title></path>
-<text x="819.1" y="404.3" class="ink" text-anchor="middle">14/21</text>
-<path d="M832.1,536.0 V377.1 Q832.1,373.1 836.1,373.1 H850.1 Q854.1,373.1 854.1,377.1 V536.0 Z" fill="#1baf7a"><title>Opus, mixed, complete fix: 18 of 21 runs</title></path>
-<text x="843.1" y="368.1" class="ink" text-anchor="middle">18/21</text>
+<path d="M784.1,536.0 V401.8 Q784.1,397.8 788.1,397.8 H802.1 Q806.1,397.8 806.1,401.8 V536.0 Z" fill="#2a78d6"><title>Sonnet, mixed, complete fix: 24 of 33 runs</title></path>
+<text x="795.1" y="392.8" class="ink" text-anchor="middle">24/33</text>
+<path d="M808.1,536.0 V436.4 Q808.1,432.4 812.1,432.4 H826.1 Q830.1,432.4 830.1,436.4 V536.0 Z" fill="#eb6834"><title>Haiku, mixed, complete fix: 18 of 33 runs</title></path>
+<text x="819.1" y="427.4" class="ink" text-anchor="middle">18/33</text>
+<path d="M832.1,536.0 V384.5 Q832.1,380.5 836.1,380.5 H850.1 Q854.1,380.5 854.1,384.5 V536.0 Z" fill="#1baf7a"><title>Opus, mixed, complete fix: 27 of 33 runs</title></path>
+<text x="843.1" y="375.5" class="ink" text-anchor="middle">27/33</text>
 <text x="819.1" y="554" class="ink" text-anchor="middle">mixed</text>
 <rect x="56" y="596" width="12" height="12" rx="2" fill="#2a78d6"/>
 <text x="73" y="606" class="ink">Sonnet</text>
@@ -110,4 +110,4 @@
 <text x="158" y="606" class="ink">Haiku</text>
 <rect x="218" y="596" width="12" height="12" rx="2" fill="#1baf7a"/>
 <text x="235" y="606" class="ink">Opus</text>
-<text x="864" y="606" class="muted" text-anchor="end">252 runs, results.csv</text></svg>
+<text x="864" y="606" class="muted" text-anchor="end">288 runs, results.csv</text></svg>
